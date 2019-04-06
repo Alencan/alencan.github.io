@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="Hexo">
+      <meta property="og:title" content="我的第一篇博客">
   
   <!--Open Graph Description-->
   
@@ -24,7 +24,7 @@
   <meta property="og:site_name" content="Hexo">
   <!--Type page-->
   
-      <meta property="og:type" content="website">
+      <meta property="og:type" content="article">
   
   <!--Page Cover-->
   
@@ -42,7 +42,7 @@
     </script>
   <!-- Title -->
   
-  <title>Archives - Hexo</title>
+  <title>我的第一篇博客 - Hexo</title>
 
 
   <link rel="shortcut icon" href="/favicon.ico">
@@ -153,47 +153,76 @@
 
 
   <!-- Main Content -->
-  
-
-<!-- Main Content -->
-<div class="archive content-area">
-  <div class="container">
-    <h1 class="entry-title">Archives</h1>
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <!-- Use lodash to classify posts. See https://lodash.com/docs#groupBy
-          1. group site.posts by year
-          2. sort posts-in-one-year by Month and Day
-        -->
-        
-
-        
-          <h2 class="year">2019</h2>
-          <ul class="list">
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            我的第一篇博客
             
-  <li>
-    <span class="date">
-      2019-04-03
-    </span>
-    <a href="/2019/04/03/hello-world/" class="title">
-      Hello World
-    </a>
-  </li>
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2019-04-03
+          </p>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>你好，世界！！！</p>
+<p>​    在我的第一篇博客中，我想谈谈我创建博客所遇到的一些问题。关于搭建博客的教程网上都可以找到，可以很方便的完成，但是如果因为卡在一些小环节上，是很耗费时间的。将自己的所学所见记录在博客中，是一条成长的路，也是一条分享的路。在学习的过程中，与人分享，与人讨论，何尝不是一件很惬意的事呢。</p>
+<p>​    我将列举下面三个注意点，来说明我，也可以说是大部分人所遇到的坑。</p>
+<ol>
+<li>在GitHub上创建库时。</li>
+<li>在浏览器中打开自己的博客时，遇到404的问题。</li>
+<li>更换主题时。</li>
+</ol>
+<p><strong>1.在GitHub上创建库时</strong> ：仓库的名字必须是GitHub的账户用户名.github.io,起一个好名字是很重要的，他决定了你的域名，也就是别人访问你博客的地址。</p>
+<p><strong>2.404问题</strong> 当你搭建兴冲冲的将搭建的博客从本地部署到GitHub后，你会高兴地打开自己的博客去看，但是当你点击后，你却失落的看到了出现404问题，很烦人啊！没关系，这是由于你在GitHub上创建了多个库或仓库名的问题，以至于在config.yml不能识别你的博客具体用的是哪个地址，如果你只创建了一个仓库，当然就没有此类问题了。</p>
+<p>首先你需要确定你的仓库名是否按照第一点注意事项来创建的，依然不对的话，看config.yml的配置文件是否如下：</p>
+<blockquote>
+<p>url: <a href="http://yoursite.com">http://yoursite.com</a><br>root: /</p>
+</blockquote>
+<p>当你有多个库时，需要修改配置文件中的url和root</p>
+<blockquote>
+<p> <a href="url:https://alencan.github.io/" target="_blank" rel="noopener">url:https://alencan.github.io/</a></p>
+<p>root:alencan.github.io</p>
+</blockquote>
+<p>url填写GitHub仓库中settings中博客访问的完整地址，root填写项目名字。</p>
+<p><strong>3更换主题</strong> 当你直接在命令行中下载主题时，一定要注意下载的路径，不过建议直接将需要下载的主题放在theme文件夹下。然后一步步在命令行中执行。</p>
+<p><strong>下面是一个搭建博客的详细教程：</strong></p>
+<p><a href="https://blog.csdn.net/Hanani_Jia/article/details/77950594" target="_blank" rel="noopener"></a></p>
 
-  <li>
-    <span class="date">
-      2019-04-03
-    </span>
-    <a href="/2019/04/03/我的第一篇博客/" class="title">
-      我的第一篇博客
-    </a>
-  </li>
-
-
-          </ul>
-        
-      </div>
+        </div>
+      </article>
     </div>
+    <!-- Pre or Next -->
+    
+	<div class="container">
+           <ul class="pager">
+    	     
+           
+              <li class="next">
+              <a href="/2019/04/03/hello-world/" rel="prev">上一篇</a>
+            </li>
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+</section>
+
+
+    </div>
+   
+　　　　
   </div>
 </div>
 
