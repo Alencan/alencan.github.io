@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="关于DOM的操作及性能优化问题">
+      <meta property="og:title" content="Hexo">
   
   <!--Open Graph Description-->
   
@@ -24,7 +24,7 @@
   <meta property="og:site_name" content="Hexo">
   <!--Type page-->
   
-      <meta property="og:type" content="article">
+      <meta property="og:type" content="website">
   
   <!--Page Cover-->
   
@@ -42,7 +42,7 @@
     </script>
   <!-- Title -->
   
-  <title>关于DOM的操作及性能优化问题 - Hexo</title>
+  <title>Hexo</title>
 
 
   <link rel="shortcut icon" href="/favicon.ico">
@@ -161,7 +161,7 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            关于DOM的操作及性能优化问题
+            Untitled
             
           </h1>
          
@@ -171,31 +171,30 @@
           </p>
         <!-- Post Main Content -->
         <div class="entry-content">
-          <p><strong>一、什么是DOM操作与性能？</strong></p>
+          <p>title: 关于DOM的操作及性能优化问题<br>date: 2019-04-20 11:32:45<br>tags:</p>
+<p><strong>一、什么是DOM操作与性能？</strong></p>
 <p>​        DOM操作：就是通过相应的方法获取页面中的各个节点，并执行相应的操作。</p>
 <p>​        性能：可以从server，content，css, js等方面来提升性能。这里主要说浏览器的性能，主要是指解析HTML，创建DOM树，渲染树构建，绘制渲染树的能力。</p>
 <p><strong>二、访问DOM</strong></p>
 <p>​    　    像书上的比喻：把DOM和JavaScript（这里指ECMScript）各自想象为一个岛屿，它们之间用收费桥梁连接，ECMAScript每次访问DOM，都要途径这座桥，并交纳“过桥费”,访问DOM的次数越多，费用也就越高。因此，推荐的做法是尽量减少过桥的次数，努力待在ECMAScript岛上。我们不可能不用DOM的接口，那么，怎样才能提高程序的效率？</p>
 <p>​        这里我向大家介绍两个例子，来减少访问DOM的次数。</p>
-<p>1、减少DOM的操作次数</p>
+<p><strong>1、减少DOM的操作次数</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;div id=&quot;div1&quot;&gt;&lt;/div&gt;</span><br><span class="line">	&lt;div id=&quot;div2&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	//不推荐</span><br><span class="line">	console.time();</span><br><span class="line">	var times=2000;</span><br><span class="line">	for(var i = 0; i &lt; times; i++) &#123;</span><br><span class="line">	 document.getElementById(&apos;div1&apos;).innerText += &apos;a&apos;;</span><br><span class="line">	&#125;</span><br><span class="line">	console.timeEnd();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//推荐</span><br><span class="line">	console.time();</span><br><span class="line">	var str = &apos;&apos;;</span><br><span class="line">	for(var i = 0; i &lt; times; i++) &#123;</span><br><span class="line">	 str += &apos;a&apos;;</span><br><span class="line">	&#125;</span><br><span class="line">	document.getElementById(&apos;div2&apos;).innerText = str;</span><br><span class="line">	console.timeEnd();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p><img src alt></p>
-<p>2、html集合/遍历DOM </p>
+<p><img src="D:\Blog\myblog\.deploy_git\images\5.PNG" alt></p>
+<p><strong>2、html集合/遍历DOM</strong> </p>
 <p>​        html集合类似数组，但是跟数组还是不一样的。如document.getElementsByTagName(‘a’) 返回的html集合。这个集合是<strong>实时更新</strong>的，即后面代码修改了DOM，会反映在这个html集合里面。可尝试代码。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">	 &lt;ul id=&apos;fruit&apos;&gt;</span><br><span class="line">	 &lt;li&gt; apple &lt;/li&gt;</span><br><span class="line">	 &lt;li&gt; orange &lt;/li&gt;</span><br><span class="line">	 &lt;li&gt; banana &lt;/li&gt;</span><br><span class="line"> &lt;/ul&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script &gt;</span><br><span class="line">	var lis = document.getElementsByTagName(&apos;li&apos;);</span><br><span class="line">	 var peach = document.createElement(&apos;li&apos;);</span><br><span class="line">	 peach.innerHTML = &apos;peach&apos;;</span><br><span class="line">	 document.getElementById(&apos;fruit&apos;).appendChild(peach);</span><br><span class="line">	 console.log(lis.length); </span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>​        当你需要将上面的文本节点中的内容都打印出来，需要遍历集合，此时需要用到for循环，此时我们就可以通过for循环来着手，减少判断语句，提高效率。看下面的两段代码。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">console.time();</span><br><span class="line">var lis0 = document.getElementsByTagName(&apos;li&apos;);</span><br><span class="line">var str0 = &apos;&apos;;</span><br><span class="line">for(var i = 0; i &lt; lis0.length; i++) &#123;</span><br><span class="line"> str0 += lis0[i].innerText;</span><br><span class="line">&#125;</span><br><span class="line">console.log(str0);</span><br><span class="line">console.timeEnd();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">console.time();</span><br><span class="line">var lis1 = document.getElementsByTagName(&apos;li&apos;);</span><br><span class="line">var str1 = &apos;&apos;;</span><br><span class="line">for(var i = 0, len = lis1.length; i &lt; len; i++) &#123;</span><br><span class="line"> str1 += lis1[i].innerText;</span><br><span class="line">&#125;</span><br><span class="line">console.log(str1);</span><br><span class="line">console.timeEnd();</span><br></pre></td></tr></table></figure>
-<p><img src alt></p>
+<p><img src="D:\Blog\myblog\.deploy_git\images\7.PNG" alt></p>
 <p><strong>二、修改DOM树引起的重排（回流）与重绘</strong></p>
 <p>​        我们先通过一张图来看浏览器的渲染结构流程图：</p>
-<p><img src alt></p>
-<p>由于浏览器的流布局，对渲染树的计算通常只需要遍历一次就可以完成。但table及其内部元素除外，它可能需要多次计算才能确定好其在渲染树中节点的属性，通常要花3倍于同等元素的时间。这也是为什么我们要避免使用table做布局的一个原因。</p>
-<p>​    </p>
+<p><img src="D:\Blog\myblog\.deploy_git\images\6.PNG" alt></p>
+<p>​    由于浏览器的流布局，对渲染树的计算通常只需要遍历一次就可以完成。但table及其内部元素除外，它可能需要多次计算才能确定好其在渲染树中节点的属性，通常要花3倍于同等元素的时间。这也是为什么我们要避免使用table做布局的一个原因。</p>
 <p>​    1、Table要比其它html标记占更多的字节。(延迟下载时间，占用服务器更多的流量资源。)</p>
 <p>​    2、Tablle会阻挡浏览器渲染引擎的渲染顺序。(会延迟页面的生成速度，让用户等待更久的时间。)</p>
 <p>​    3、Table里显示图片时需要你把单个、有逻辑性的图片切成多个图。(增加设计的复杂度，增加页面加载时间，增加HTTP会话数。)</p>
-<p>​    4、Table会影响其内部的某些布局属性的生效(比如<code>&lt;td&gt;里的</code>元素的<code>height:100%</code>)</p>
-<p>(这会限制你页面设计的自由性。)</p>
+<p>​    4、Table会影响其内部的某些布局属性的生效(比如td元素的height:100%）(这会限制你页面设计的自由性。)</p>
 <p>​    5、table一旦设计完成就变成死的，很难通过CSS让它展现新的面貌。</p>
 <p><strong>    重排：</strong>当DOM的变化影响了元素的几何属性（宽或高），浏览器需要重新计算元素的几何属性，同样其他元素的几何属性和位置也会因此受到影响。浏览器会使渲染树中受到影响的部分失效，并重新构造渲染树。这个过程称为重排。重排一定伴随着重绘。</p>
 <p>​    当渲染树中部分或全部元素的尺寸、结构、或某些属性发生改变时，浏览器重新渲染部分或全部文档的过程称为回流。</p>
@@ -220,7 +219,7 @@
 </li>
 </ul>
 <p>　<strong>重绘：</strong>是一个元素外观的改变所触发的浏览器行为，例如改变visibility、outline、背景色等属性（上面说到的<strong>其他属性</strong>）。浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。重绘不会带来重新布局，并不一定伴随重排。</p>
-<p>　一句话，重排必将引起重绘，重绘不一定重排</p>
+<p>　<strong>一句话，重排必将引起重绘，重绘不一定重排</strong></p>
 <p><strong>三、应对方法：尽量减少重绘次数、减少重排次数、缩小重拍的影响范围</strong></p>
 <p>1、合并多次操作</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> var ele = document.getElementById(&apos;myDiv&apos;);</span><br><span class="line">ele.style.borderLeft = &apos;1px&apos;;</span><br><span class="line"> ele.style.borderRight = &apos;2px&apos;;</span><br><span class="line">// var _top = ele.offsetTop; //刷新队列</span><br><span class="line">ele.style.padding = &apos;5px&apos;;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"> 合并：ele.style.cssText = &apos;border-left: 1px; border-right: 2px; padding: 5px;&apos;;</span><br></pre></td></tr></table></figure>
