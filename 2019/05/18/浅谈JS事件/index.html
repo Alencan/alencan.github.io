@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="John Doe">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="浅谈JS事件">
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="Hexo">
+  <!--Type page-->
+  
+      <meta property="og:type" content="article">
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- 百度统计 -->
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+  	var hm = document.createElement("script");
+  	hm.src = "https://hm.baidu.com/hm.js?c0451e16533956173997b85f7a8de666";
+  	var s = document.getElementsByTagName("script")[0]; 
+  	s.parentNode.insertBefore(hm, s);
+	})();
+    </script>
+  <!-- Title -->
+  
+  <title>浅谈JS事件 - Hexo</title>
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+    <!--font-awesome-->
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="http://img1.imgtn.bdimg.com/it/u=3575328070,2928678511&amp;fm=26&amp;gp=0.jpg" alt="Hexo" height="60">
+        
+      </a>
+    </div>
+    <a class="header-name" href="/">
+            <span>Hexo</span>
+            的部落宅
+        </a>
+    <!-- navbar -->
+    <nav class="navbar">
+      <!--  nav links -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  <i class="fa fa-home "></i>
+                
+                首页
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  <i class="fa fa-archive "></i>
+                
+                归档
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  <i class="fa fa-user "></i>
+                
+                关于
+              </a>
+            </li>
+          
+            <li>
+              <a href="/project">
+                
+                  <i class="fa fa-folder-open "></i>
+                
+                项目
+              </a>
+            </li>
+          
+            <li>
+              <a href="/photo">
+                
+                  <i class="fa fa-photo "></i>
+                
+                相册
+              </a>
+            </li>
+          
+            <li>
+              <a href="/guestbook">
+                
+                  <i class="fa fa-edit "></i>
+                
+                留言
+              </a>
+            </li>
+          
+            <li>
+              <a href="/atom.xml">
+                
+                  <i class="fa fa-send "></i>
+                
+                RSS
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            浅谈JS事件
+            
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2019-05-18
+          </p>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h3 id="一-事件流"><a href="#一-事件流" class="headerlink" title="一.事件流"></a>一.事件流</h3><p>事件冒泡和事件捕获分别由微软和网景公司提出，这两个概念是为了解决页面中事件流（事件发生顺序）的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;div id=&quot;outer&quot;&gt;</span><br><span class="line">    &lt;p id=&quot;inner&quot;&gt;Click me!&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>上面的代码当中一个div元素当中有一个p子元素，如果两个元素都有一个click的处理函数，那么我们怎么才能知道哪一个函数会首先被触发呢？</p>
+<h4 id="1-事件冒泡"><a href="#1-事件冒泡" class="headerlink" title="1.事件冒泡"></a>1.事件冒泡</h4><p>微软提出了名为事件冒泡的事件流。事件冒泡可以形象地比喻为把一颗石头投入水中，泡泡会一直从水底冒出水面。也就是说，事件会从最内层的元素开始发生，一直向上传播，直到document对象。</p>
+<p>因此上面的例子在事件冒泡的概念下发生click事件的顺序应该是<strong>p -&gt; div -&gt; body -&gt; html -&gt; document</strong></p>
+<h4 id="2-事件捕获"><a href="#2-事件捕获" class="headerlink" title="2.事件捕获"></a>2.事件捕获</h4><p>网景提出另一种事件流名为事件捕获与事件冒泡相反，事件会从最外层开始发生，直到最具体的元素。</p>
+<p>上面的例子在事件捕获的概念下发生click事件的顺序应该是<strong>document -&gt; html -&gt; body -&gt; div -&gt; p</strong></p>
+<h4 id="3-W3C事件阶段-event-phase-："><a href="#3-W3C事件阶段-event-phase-：" class="headerlink" title="3.W3C事件阶段(event phase)："></a>3.W3C事件阶段(event phase)：</h4><p>当一个DOM事件被触发的时候，他并不是只在它的起源对象上触发一次，而是会经历三个不同的阶段。简而言之：事件一开始从文档的根节点流向目标对象(捕获阶段)，然后在目标对向上被触发(目标阶段)，之后再回溯到文档的根节点(冒泡阶段)如图所示（图片来自W3C）：</p>
+<p><img src="D:\Blog\myblog\themes\believe\source\images\8.png" alt></p>
+<p><strong>事件捕获阶段(Capture Phase)</strong></p>
+<p>事件从文档的根节点出发，随着DOM树的结构向事件的目标节点流去。途中经过各个层次的DOM节点，并在各节点上触发捕获事件，直到到达时间的目标节点。捕获阶段的主要任务是经历传播路径，在冒泡阶段，事件会通过这个路径回溯到文档根节点。</p>
+<p>例如，通过下面的这个函数来给节点设置监听，可以通过将;设置成true来为事件的捕获阶段添加监听回调函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.removeEventListener(&amp;ltevent-name&gt;, &lt;callback&gt;, &lt;use-capture&gt;);</span><br></pre></td></tr></table></figure>
+<p>而，在实际应用中，我们并没有太多使用捕获阶段监听的用例，但是通过在捕获阶段对事件的处理，我们可以阻止类似click事件在某个特定元素上被触发。如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var form=document.querySeletor(&apos;form&apos;);</span><br><span class="line">form.addEventListener(&apos;click&apos;,function(e)&#123;</span><br><span class="line">  e.stopPropagation();</span><br><span class="line">  &#125;,true);</span><br></pre></td></tr></table></figure>
+<p>这里true表示采用事件捕获方式，如果为false表示事件冒泡方式。采用事件捕获时当执行完对应事件后，它的后续路径的事件将不执行了e.stopPropagation();，阻止事件传递，（还需要看当前事件对象是哪一个），同理事件冒泡也是如此。</p>
+<p><strong>目标阶段(Target Phase)</strong></p>
+<p>当事件到达目标节点时，事件就进入了目标阶段。事件在目标节点上被触发，然后逆向回流，知道传播到最外层的文档节点。</p>
+<p>对于多层嵌套的节点，鼠标和指针事件经常会被定位到最里层的元素上。假设，你在一个div元素上设置了click的监听函数，而用户点击在了这个div元素内部的p元素上，那么p元素就是这个时间的目标元素。事件冒泡让我们可以在这个div或者更上层的元素上监听click事件，并且事件传播过程中触发回调函数。</p>
+<p><strong>冒泡阶段(Bubble Phase)</strong></p>
+<p>事件在目标事件上触发后，并不在这个元素上终止。它会随着DOM树一层层向上冒泡，直到到达最外层的根节点，一直向上传播，直到document对象。也就是说，同一事件会一次在目标节点的父节点，父节点的父节点…直到最外层的节点上触发。</p>
+<p>绝大多数事件是会冒泡的，但并非所有的。</p>
+<h3 id="二-事件代理（event-delegation）"><a href="#二-事件代理（event-delegation）" class="headerlink" title="二.事件代理（event delegation）"></a>二.事件代理（event delegation）</h3><p>在JavaScript中，经常会碰到要监听列表中多项li的情形，假设我们有一个列表如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id=&quot;list&quot;&gt;</span><br><span class="line">  &lt;li id=&quot;item1&quot;&gt;item1&lt;/li&gt;</span><br><span class="line">  &lt;li id=&quot;item2&quot;&gt;item2&lt;/li&gt;</span><br><span class="line">  &lt;li id=&quot;item3&quot;&gt;item3&lt;/li&gt;</span><br><span class="line">  &lt;li id=&quot;item4&quot;&gt;item4&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>如果我们要实现以下功能：当鼠标点击某一li时，alert输出该li的内容.</p>
+<p>第一种方法是我们给每一个li添加onclick事件，</p>
+<p>第二种方法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">window.onload=function()&#123;</span><br><span class="line">  var ulNode=document.getElementById(&quot;list&quot;);</span><br><span class="line">  var liNodes=ulNode.childNodes||ulNode.children;</span><br><span class="line">  for(var i=0;i&lt;liNodes.length;i++)&#123;</span><br><span class="line">    liNodes[i].addEventListener(&apos;click&apos;,function(e)&#123;</span><br><span class="line">      alert(e.target.innerHTML);</span><br><span class="line">    &#125;,false);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注：</strong></p>
+<blockquote>
+<p><strong>-tagName</strong> 属性返回元素的标签名。在 HTML 中，tagName 属性的返回值始终是大写的。</p>
+<p><strong>-nodeName</strong> 属性指定节点的节点名称。如果节点是元素节点，则 nodeName 属性返回标签名。如果节点是属性节点，则 nodeName 属性返回属性的名称。对于其他节点类型，nodeName 属性返回不同节点类型的不同名称。</p>
+</blockquote>
+<h3 id="三-事件兼容处理"><a href="#三-事件兼容处理" class="headerlink" title="三.事件兼容处理"></a>三.事件兼容处理</h3><p>现代绑定中W3C 使用的是：addEventListener 和removeEventListener。IE 使用的是attachEvent 和detachEvent。我们知道IE 的这两个问题多多，并且伴随内存泄漏。所以，解决这些问题非常有必要。</p>
+<p>那么我们希望解决非IE 浏览器事件绑定哪些问题呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1）支持同一元素的同一事件句柄可以绑定多个监听函数；</span><br><span class="line">2）如果在同一元素的同一事件句柄上多次注册同一函数，那么第一次注册后的所有注册</span><br><span class="line">都被忽略；</span><br><span class="line">3）函数体内的this 指向的应当是正在处理事件的节点（如当前正在运行事件句柄的节</span><br><span class="line">点）；</span><br><span class="line">4）监听函数的执行顺序应当是按照绑定的顺序执行；</span><br><span class="line">5)在函数体内不用使用event = event || window.event; 来标准化Event 对象；</span><br></pre></td></tr></table></figure>
+<h3 id="四-事件类型"><a href="#四-事件类型" class="headerlink" title="四.事件类型"></a>四.事件类型</h3><p>事件类型有：UI（用户界面）事件，用户与页面上元素交互时触发 ；焦点事件：当元素获得或失去焦点时触发 ； 文本事件：当在文档中输入文本时触发；键盘事件：当用户通过键盘在页面上执行操作时触发；鼠标事件：当用户通过鼠标在页面上执行操作时触发；滚轮事件：当使用鼠标滚轮（或类似设备）时触发。它们之间是继承的关系，如下图：</p>
+<p><img src="D:\Blog\myblog\themes\believe\source\images\9.jpg" alt></p>
+<p>1.</p>
+<p><img src="D:\Blog\myblog\themes\believe\source\images\10.jpg" alt></p>
+<p>常用：window、image。例如设置默认的图片：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;img src=&quot;photo&quot; alt=&quot;photo.jpg&quot; onerror=&quot;this.src=&apos;defualt.jpg&apos;&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>2.<img src="D:\Blog\myblog\themes\believe\source\images\11.jpg" alt></p>
+<p>3.<img src="D:\Blog\myblog\themes\believe\source\images\12.jpg" alt></p>
+<p>4.<img src="D:\Blog\myblog\themes\believe\source\images\13.jpg" alt></p>
+<p>5.<img src="D:\Blog\myblog\themes\believe\source\images\15.jpg" alt></p>
+<p>6.<img src="D:\Blog\myblog\themes\believe\source\images\16.jpg" alt></p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    
+	<div class="container">
+           <ul class="pager">
+    	     
+           
+              <li class="next">
+              <a href="/2019/05/18/JS数组的方法/" rel="prev">上一篇</a>
+            </li>
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+</section>
+
+
+    </div>
+   
+　　　　
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>Hexo &copy; 2019</span>
+    
+      <span class="split">|</span>
+      <span>来自Alen</span>
+    
+  </p>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>
