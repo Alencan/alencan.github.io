@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="Hello World">
+      <meta property="og:title" content="组件、模块与插件化">
   
   <!--Open Graph Description-->
   
@@ -42,7 +42,7 @@
     </script>
   <!-- Title -->
   
-  <title>Hello World - Hexo</title>
+  <title>组件、模块与插件化 - Hexo</title>
 
 
   <link rel="shortcut icon" href="/favicon.ico">
@@ -161,25 +161,48 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            Hello World
+            组件、模块与插件化
             
           </h1>
          
         </div>
          <p class="a-posted-on">
-          2019-04-03
+          2018-12-15
           </p>
         <!-- Post Main Content -->
         <div class="entry-content">
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+          <h3 id="1-模块化"><a href="#1-模块化" class="headerlink" title="1 模块化"></a>1 模块化</h3><p>狭义上说：<br>是指Android studio支持了多个module开发时，提出的模块化概念。<br>具体实践：把常用的功能、控件、基础类、第三方库、权限等公共部分抽离封装，把业务拆分成N个模块进行独立(module)的管理。<br>而所有的业务组件都依赖于封装的基础库，业务组件之间不做依赖，这样的目的是为了让每个业务模块能单独运行。</p>
+<p>广义上说：<br>将一个复杂业务实现，根据功能、页面或者其他进行不同粒度的划分程不同的模块，模块之间解耦，分别进行实现，也就是编程的模块化思想。</p>
+<p>模块化的特点是：模块之间解耦，可以独立管理。</p>
+<h3 id="2-组件化"><a href="#2-组件化" class="headerlink" title="2 组件化"></a>2 组件化</h3><p>将一个app的代码拆分成几份独立的组件，组件之间是低耦合的，可以独立编译打包；也可以将组件打包到一个apk中。</p>
+<p><strong>【没有组件化的缺点】：</strong></p>
+<ul>
+<li>（1）项目可维护性下降。随着项目的增加，即使有做分包目录，但是项目会逐渐失去层次感，可读性、可维护性下降</li>
+<li>（2）开发和调试效率低。开发和调试时，修改了一个小功能，但是需要重新build整个项目才能看到结果，耗费时间</li>
+<li>（3）易阻断不同业务模块的并发开发。一个业务模块的小bug，可能阻断其他业务模块的开发和调试，不同业务模块的并发开发会被阻断。</li>
+<li>（4）版本管理困难。多人联合开发时，在版本管理中容易出现冲突和代码覆盖问题。</li>
+</ul>
+<p><strong>【组件化的拆分】</strong></p>
+<ul>
+<li>按照业务（功能）划分各个业务组件模块。</li>
+</ul>
+<p><strong>【组件化后的优点】</strong></p>
+<ul>
+<li>（1）每个模块可独立编译，提高了编译速度；</li>
+<li>（2）开发只负责自己的模块，还可以再做的隔离一些，每个业务线只可见自己业务模块的代码，避免了误修改和版本管理问题。</li>
+<li>（3）公共的Lib依然是个独立模块</li>
+</ul>
+<p><strong>与模块化的区别：是每个模块的角色的转换，一个组件可以独立编译打包，也可以作为lib集成到整个apk中</strong></p>
+<h3 id="3-插件化"><a href="#3-插件化" class="headerlink" title="3 插件化"></a>3 插件化</h3><p>插件化是将一个apk根据业务功能拆分成不同的子apk（也就是不同的插件），每个子apk可以独立编译打包，最终发布上线的是集成后的apk。在apk使用时，每个插件是动态加载的，插件也可以进行热修复和热更新。</p>
+<ul>
+<li>从技术上讲，就是解决如何启动未安装的apk里面的类（主要是四大组件）。</li>
+<li>主要问题：如何加载类、如何加载资源、如何管理组件生命周期。</li>
+</ul>
+<p><strong>与组件化的主要区别：</strong></p>
+<ul>
+<li>形式上的区别，组件化的单位是module，插件化的单位是apk</li>
+<li>关注点不同，插件化更关注动态加载、热更新、热修复等‘插拔’技术。</li>
+</ul>
 
         </div>
       </article>
@@ -190,12 +213,12 @@
            <ul class="pager">
     	     
       	     <li class="previous">
-              <a href="/2019/05/18/浅谈JS事件/" rel="prev">下一篇</a>
+              <a href="/2018/12/21/vue全局变量定义与vuex/" rel="prev">下一篇</a>
              </li>
            
            
               <li class="next">
-              <a href="/2019/02/02/什么是webpack/" rel="prev">上一篇</a>
+              <a href="/2018/12/08/vue-router传参/" rel="prev">上一篇</a>
             </li>
            
           </ul>
