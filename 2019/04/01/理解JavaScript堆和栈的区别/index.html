@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="John Doe">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="理解堆和栈的区别">
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="Hexo">
+  <!--Type page-->
+  
+      <meta property="og:type" content="article">
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- 百度统计 -->
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+  	var hm = document.createElement("script");
+  	hm.src = "https://hm.baidu.com/hm.js?c0451e16533956173997b85f7a8de666";
+  	var s = document.getElementsByTagName("script")[0]; 
+  	s.parentNode.insertBefore(hm, s);
+	})();
+    </script>
+  <!-- Title -->
+  
+  <title>理解堆和栈的区别 - Hexo</title>
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+    <!--font-awesome-->
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="http://img1.imgtn.bdimg.com/it/u=3575328070,2928678511&amp;fm=26&amp;gp=0.jpg" alt="Hexo" height="60">
+        
+      </a>
+    </div>
+    <a class="header-name" href="/">
+            <span>Hexo</span>
+            的部落宅
+        </a>
+    <!-- navbar -->
+    <nav class="navbar">
+      <!--  nav links -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  <i class="fa fa-home "></i>
+                
+                首页
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  <i class="fa fa-archive "></i>
+                
+                归档
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  <i class="fa fa-user "></i>
+                
+                关于
+              </a>
+            </li>
+          
+            <li>
+              <a href="/project">
+                
+                  <i class="fa fa-folder-open "></i>
+                
+                项目
+              </a>
+            </li>
+          
+            <li>
+              <a href="/photo">
+                
+                  <i class="fa fa-photo "></i>
+                
+                相册
+              </a>
+            </li>
+          
+            <li>
+              <a href="/guestbook">
+                
+                  <i class="fa fa-edit "></i>
+                
+                留言
+              </a>
+            </li>
+          
+            <li>
+              <a href="/atom.xml">
+                
+                  <i class="fa fa-send "></i>
+                
+                RSS
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            理解堆和栈的区别
+            
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2019-04-01
+          </p>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>这里先说两个概念：1、堆（heap）2、栈（stack）<br><strong>堆</strong> 是堆内存的简称。<br><strong>栈</strong> 是栈内存的简称。<br>说到堆栈，我们讲的就是内存的使用和分配了，没有寄存器的事，也没有硬盘的事。<br>各种语言在处理堆栈的原理上都大同小异。堆是动态分配内存，内存大小不一，也不会自动释放。栈是自动分配相对固定大小的内存空间，并由系统自动释放。</p>
+<p>javascript的基本类型就5种:Undefined、Null、Boolean、Number和String，它们都是直接按值存储在栈中的，每种类型的数据占用的内存空间的大小是确定的，并由系统自动分配和自动释放。这样带来的好处就是，内存可以及时得到回收，相对于堆来说，更加容易管理内存空间。</p>
+<p>javascript中其他类型的数据被称为引用类型的数据 : 如对象(Object)、数组(Array)、函数(Function) …，它们是通过拷贝和new出来的，这样的数据存储于堆中。其实，说存储于堆中，也不太准确，因为，引用类型的数据的地址指针是存储于栈中的，当我们想要访问引用类型的值的时候，需要先从栈中获得对象的地址指针，然后，在通过地址指针找到堆中的所需要的数据。</p>
+<p>说来也是形象，栈，线性结构，后进先出，便于管理。堆，一个混沌，杂乱无章，方便存储和开辟内存空间<br><strong>传值与传址</strong></p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; var arr1 = [1,2,5,8]; </span><br><span class="line">&gt; var arr2 = arr1 ; </span><br><span class="line">&gt; var str1 = arr1[2]; </span><br><span class="line">&gt; console.log(arr2);//1,2,5,8</span><br><span class="line">&gt; console.log(str1);//5</span><br><span class="line">&gt; arr2[4] = 99; </span><br><span class="line">&gt; str1 = 6; </span><br><span class="line">&gt; console.log(arr1);//1,2,5,8,99</span><br><span class="line">&gt; console.log(arr1[2]);//5</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上方例子得知，当我改变arr2中的数据时，arr1中数据也发生了变化，当改变str1的数据值时，arr1却没有发生改变。为什么？这就是传值与传址的区别。</p>
+<p>因为arr1是数组，属于引用类型，所以它赋予给arr2的时候传的是栈中的地址（相当于新建了一个不同名“指针”），而不是堆内存中的对象的值。str1得到的是一个基本类型的赋值，因此，str1仅仅是从arr1堆内存中获取了一个数值，并直接保存在栈中。arr1、arr2都指向同一块堆内存，arr2修改的堆内存的时候，也就会影响到arr1，str1是直接在栈中修改，并且不能影响到arr1堆内存中的数据。</p>
+<p><strong>浅拷贝和深拷贝</strong></p>
+<p>上边说到的赋值方式就是浅拷贝，那么什么叫作深拷贝呢？就是要将arr1的每个基本类型的数据都遍历一遍，依次的赋值给arr2的对应字段。避免产生因为地址引用带来的问题。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; var arr1 = [1,2,5,8]; </span><br><span class="line">&gt; var arr2 = []; </span><br><span class="line">&gt; for(var i=0;i&lt;arr1.length;i++)&#123;</span><br><span class="line">&gt;    arr2[i]=arr1[i];</span><br><span class="line">&gt; &#125;;</span><br><span class="line">&gt; console.log(arr2)//1,2,5,8</span><br><span class="line">&gt; arr2[4]=99;</span><br><span class="line">&gt; console.log(arr2)//1,2,5,8,99</span><br><span class="line">&gt; console.log(arr1)//1,2,5,8</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>javascript面向对象的语言本身在处理对象和非对象上就进行了划分，从数据结构的角度来讲，对象就是栈的指针和堆中的数值。</p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    
+	<div class="container">
+           <ul class="pager">
+    	     
+      	     <li class="previous">
+              <a href="/2019/04/03/hello-world/" rel="prev">下一篇</a>
+             </li>
+           
+           
+              <li class="next">
+              <a href="/2019/03/20/ES6特性之模板字符串/" rel="prev">上一篇</a>
+            </li>
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+</section>
+
+
+    </div>
+   
+　　　　
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>Hexo &copy; 2019</span>
+    
+      <span class="split">|</span>
+      <span>来自Alen</span>
+    
+  </p>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>

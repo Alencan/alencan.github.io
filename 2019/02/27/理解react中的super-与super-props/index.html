@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="Hello World">
+      <meta property="og:title" content="理解react中的super()与super(props)">
   
   <!--Open Graph Description-->
   
@@ -42,7 +42,7 @@
     </script>
   <!-- Title -->
   
-  <title>Hello World - Hexo</title>
+  <title>理解react中的super()与super(props) - Hexo</title>
 
 
   <link rel="shortcut icon" href="/favicon.ico">
@@ -161,25 +161,38 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            Hello World
+            理解react中的super()与super(props)
             
           </h1>
          
         </div>
          <p class="a-posted-on">
-          2019-04-03
+          2019-02-27
           </p>
         <!-- Post Main Content -->
         <div class="entry-content">
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+          <h2 id="1-constructor-—–super-的基本含义"><a href="#1-constructor-—–super-的基本含义" class="headerlink" title="1.constructor( )—–super( )的基本含义"></a>1.constructor( )—–super( )的基本含义</h2><p>constructor( )——构造方法</p>
+<p>​       这是ES6对类的默认方法，通过 new 命令生成对象实例时自动调用该方法。并且，该方法是类中必须有的，如果没有显示定义，则会默认添加空的constructor( )方法。</p>
+<p>super( ) ——继承</p>
+<p>​      在class方法中，继承是使用 extends 关键字来实现的。子类 必须 在 constructor( )调用 super( )方法，否则新建实例时会报错。</p>
+<p>​     报错的原因是：子类是没有自己的 this 对象的，它只能继承自父类的 this 对象，然后对其进行加工，而super( )就是将父类中的this对象继承给子类的。没有 super，子类就得不到 this 对象。</p>
+<h2 id="2-Es5—–Es6关于继承的实现不同之处"><a href="#2-Es5—–Es6关于继承的实现不同之处" class="headerlink" title="2.Es5—–Es6关于继承的实现不同之处"></a>2.Es5—–Es6关于继承的实现不同之处</h2><p>  出现上面情况的原因是，ES5的继承机制与ES6完全不同。</p>
+<p>复习一个重要知识点——ES5中new到底做了些啥？</p>
+<p>当一个构造函数前加上new的时候，背地里来做了四件事：<br>1.生成一个空的对象并将其作为 this；<br>2.将空对象的 <code>__proto__</code> 指向构造函数的 <code>prototype</code>；<br>3.运行该构造函数；<br>4.如果构造函数没有 return 或者 return 一个返回 this 值是基本类型，则返回this；如果 return 一个引用类型，则返回这个引用类型。</p>
+<p>​      简单解释，就是在ES5的继承中，先创建子类的实例对象this，然后再将父类的方法添加到this上（ <code>Parent.apply(this)</code> ）。而ES6采用的是先创建父类的实例this（故要先调用 <code>super( )</code>方法），完后再用子类的构造函数修改this。</p>
+<h2 id="3-super-props-——super-—–以及不写super的区别"><a href="#3-super-props-——super-—–以及不写super的区别" class="headerlink" title="3.super(props)——super()—–以及不写super的区别"></a>3.super(props)——super()—–以及不写super的区别</h2><p>   如果你用到了constructor就必须写super(),是用来初始化this的，可以绑定事件到this上;</p>
+<p>   如果你在constructor中要使用this.props,就必须给super加参数：super(props)；</p>
+<p>   （无论有没有constructor，在render中this.props都是可以使用的，这是React自动附带的；）</p>
+<p>   如果没用到constructor,是可以不写的；React会默认添加一个空的constructor。</p>
+<p>用es6的class（类）的方法创建组件：</p>
+<p>子类继承父类的属性:需要使用super()继续父类的属性，同时创建this(子类本身没有this);</p>
+<p>如果像上图一样需要定义props的属性 this.props.xixi=”哈哈”，则需要用 super(props)</p>
+<p>如果不定义props的属性，只定义状态this.state ,就可以直接super();</p>
+<p>这是为什么呢？</p>
+<p>其实很简单，因为this.props必须要是一个对象，才能在它下面定义属性</p>
+<p>而constructor(props){}传入的参数props为对象</p>
+<p>所以super(props)的作用就是在父类的构造函数中给props赋值一个对象this.props=props这样就能在它的下面定义你要用到的属性了，然而其他的由于没有传参就直接赋值为undefind</p>
+<p>由于state下面没有属性，所以如果只是定义state就可以直接super（）就行了</p>
 
         </div>
       </article>
@@ -190,12 +203,12 @@
            <ul class="pager">
     	     
       	     <li class="previous">
-              <a href="/2019/04/15/伪元素/" rel="prev">下一篇</a>
+              <a href="/2019/03/10/async、await、promise/" rel="prev">下一篇</a>
              </li>
            
            
               <li class="next">
-              <a href="/2019/04/01/理解JavaScript堆和栈的区别/" rel="prev">上一篇</a>
+              <a href="/2019/02/18/react与vue的区别/" rel="prev">上一篇</a>
             </li>
            
           </ul>

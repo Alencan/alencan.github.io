@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="John Doe">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="react与vue的区别">
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="Hexo">
+  <!--Type page-->
+  
+      <meta property="og:type" content="article">
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- 百度统计 -->
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+  	var hm = document.createElement("script");
+  	hm.src = "https://hm.baidu.com/hm.js?c0451e16533956173997b85f7a8de666";
+  	var s = document.getElementsByTagName("script")[0]; 
+  	s.parentNode.insertBefore(hm, s);
+	})();
+    </script>
+  <!-- Title -->
+  
+  <title>react与vue的区别 - Hexo</title>
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+    <!--font-awesome-->
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="http://img1.imgtn.bdimg.com/it/u=3575328070,2928678511&amp;fm=26&amp;gp=0.jpg" alt="Hexo" height="60">
+        
+      </a>
+    </div>
+    <a class="header-name" href="/">
+            <span>Hexo</span>
+            的部落宅
+        </a>
+    <!-- navbar -->
+    <nav class="navbar">
+      <!--  nav links -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  <i class="fa fa-home "></i>
+                
+                首页
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  <i class="fa fa-archive "></i>
+                
+                归档
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  <i class="fa fa-user "></i>
+                
+                关于
+              </a>
+            </li>
+          
+            <li>
+              <a href="/project">
+                
+                  <i class="fa fa-folder-open "></i>
+                
+                项目
+              </a>
+            </li>
+          
+            <li>
+              <a href="/photo">
+                
+                  <i class="fa fa-photo "></i>
+                
+                相册
+              </a>
+            </li>
+          
+            <li>
+              <a href="/guestbook">
+                
+                  <i class="fa fa-edit "></i>
+                
+                留言
+              </a>
+            </li>
+          
+            <li>
+              <a href="/atom.xml">
+                
+                  <i class="fa fa-send "></i>
+                
+                RSS
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            react与vue的区别
+            
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2019-02-18
+          </p>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h2 id="1、-创建组件"><a href="#1、-创建组件" class="headerlink" title="1、 创建组件"></a>1、 创建组件</h2><h3 id="React"><a href="#React" class="headerlink" title="React"></a><strong>React</strong></h3><p>React 有两种类型的组件，分别是functional component, class component，所以有两种定义方式:</p>
+<p><strong>functional component</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function Test(props) &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&quot;container&quot;&gt;</span><br><span class="line">	    &#123;props.name&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Test name=&quot;daisy&quot; /&gt;,</span><br><span class="line">  document.getElementById(&apos;app&apos;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><strong>class component</strong><br>用构造函数 + 原型实现继承</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 注意：基于 `ES6` 中的class，需要配合 `babel` 将代码转化为浏览器识别的ES5语法</span><br><span class="line">// 安装：`npm i -D babel-preset-env`</span><br><span class="line">class Test extends React.Component() &#123;</span><br><span class="line"> constructor(props) &#123;</span><br><span class="line">   // super一定要写，继承React.Component</span><br><span class="line">    super(props);</span><br><span class="line">	// state在里面定义</span><br><span class="line">	this.state = &#123; name : &apos;daisy&apos;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  // class创建的组件中 必须有render方法，且显示return内容或者null</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;shopping-list&quot;&gt;</span><br><span class="line">        &#123;this.state.name&#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>React中要求组件名字一定是大写，这样来跟原生的html元素做区分。</p>
+<h3 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a><strong>Vue</strong></h3><p>分为局部注册跟全局注册</p>
+<p>全局注册</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&apos;my-component-name&apos;, &#123; /* ... */ &#125;)</span><br></pre></td></tr></table></figure>
+<p>局部注册</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var ComponentA = &#123; /* ... */ &#125;</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &apos;#app&apos;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    &apos;component-a&apos;: ComponentA,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>全局注册就是在注册之后，各个地方都可以使用。而局部注册就是只在这个vue 实例中才能使用。</p>
+<h2 id="2、数据绑定"><a href="#2、数据绑定" class="headerlink" title="2、数据绑定"></a>2、数据绑定</h2><p>React跟vue的思想都是开发者只需要去操作数据，至于数据在网页中如何更新，就是它们的事情了，这个就要靠数据绑定。</p>
+<p>那么在React/vue中如何做到数据绑定呢。</p>
+<h3 id="React-1"><a href="#React-1" class="headerlink" title="React"></a>React</h3><p>采用JSX语法，变量用{}包裹即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const name = &apos;Josh Perez&apos;;</span><br><span class="line">const element = &lt;h1&gt;Hello, &#123;name&#125;&lt;/h1&gt;;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  element,</span><br><span class="line">  document.getElementById(&apos;root&apos;)</span><br><span class="line">);</span><br><span class="line">注: &#123;&#125;里字可以是js表达式，不能是语句，这个跟vue一样。</span><br></pre></td></tr></table></figure>
+<h3 id="Vue-1"><a href="#Vue-1" class="headerlink" title="Vue"></a>Vue</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">使用Mustache(插值语法) &#123;&#123; &#125;&#125;从数据对象data中获取数据，当这个数据发生改变，插值处的内容就会更新。</span><br><span class="line"></span><br><span class="line">注：&#123;&#123; &#125;&#125;只能出现JS表达式，不能是js语句</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;Hello, &#123;&#123; msg &#125;&#125;.&lt;/h1&gt;</span><br><span class="line">&lt;div&gt;&#123;&#123; message.split(&apos;&apos;).reverse().join(&apos;&apos;) &#125;&#125;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//错误。js语句不支持</span><br><span class="line">&#123;&#123; var a = 1 &#125;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3、-模板语法"><a href="#3、-模板语法" class="headerlink" title="3、 模板语法"></a>3、 模板语法</h2><p>模板语法里分别从下面几个方面进行对比：</p>
+<ul>
+<li>原始html</li>
+<li>条件渲染</li>
+<li>html属性</li>
+<li>绑定事件</li>
+</ul>
+<h3 id="React-2"><a href="#React-2" class="headerlink" title="React"></a>React</h3><p><strong>原始html</strong>： 使用dangerouslySetInnerHTML</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div dangerouslySetInnerHTML=&#123;&#123;__html: &lt;span hey &lt;/span&gt;&gt;&#125;&#125;&gt;</span><br></pre></td></tr></table></figure>
+<p>条件渲染：使用三目，&amp;&amp;，如果逻辑在复杂一点就得用函数来帮忙了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">  const isLoggedIn = this.state.isLoggedIn;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      isHappy ? &lt;div&gt; yes i am  &lt;/div&gt; : &lt;div&gt; no &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">render() &#123;</span><br><span class="line">  const isLoggedIn = this.state.isLoggedIn;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">       isShow &amp;&amp; &lt;div&gt;hello word&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>html 属性</strong>：跟原生一样直接写不过要换成驼峰式tab-index =&gt; tabIndex，React 16以后还支持自定义属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div tabIndex=&quot;-1&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;div mycustomattribute=&quot;something&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>绑定事件</strong>：直接写，但是改成驼峰onClick这样的形式,同时传入的不是字符串，而是传入一个函数作为事件处理函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 原生html</span><br><span class="line">&lt;button onclick=&quot;activateLasers()&quot;&gt;</span><br><span class="line">  Activate Lasers</span><br><span class="line">&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">// React</span><br><span class="line">&lt;button onClick=&#123;activateLasers&#125;&gt;</span><br><span class="line">  Activate Lasers</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<p>既然说到了事件，就多撤一句。如果你需要阻止默认事件，<br>不能用return false的方式，而需要显式使用<code>preventDefault</code>。<br>而vue会提供一个更简单的方式，后面再说。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function ActionLink() &#123;</span><br><span class="line">  function handleClick(e) &#123;</span><br><span class="line">    e.preventDefault();</span><br><span class="line">    console.log(&apos;The link was clicked.&apos;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;a href=&quot;#&quot; onClick=&#123;handleClick&#125;&gt;</span><br><span class="line">      Click me</span><br><span class="line">    &lt;/a&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Vue-2"><a href="#Vue-2" class="headerlink" title="Vue"></a>Vue</h3><p><strong>原始html</strong>: 用v-html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;span v-html=&quot;&lt;span&gt;hey&lt;/span&gt;&quot;&gt;&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>条件渲染</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// v-if 会根据Seen的值真的去移除dom节点</span><br><span class="line">&lt;p v-if=&quot;seen&quot;&gt;现在你看到我了&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">// 而v-show只会去改变css的值</span><br><span class="line">&lt;p v-show=&quot;seen&quot;&gt;现在你看到我了&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>而对于比较复杂的逻辑，vue也可以hold住。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-if=&quot;type === &apos;A&apos;&quot;&gt;</span><br><span class="line">  A</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div v-else-if=&quot;type === &apos;B&apos;&quot;&gt;</span><br><span class="line">  B</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div v-else-if=&quot;type === &apos;C&apos;&quot;&gt;</span><br><span class="line">  C</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div v-else&gt;</span><br><span class="line">  Not A/B/C</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>html属性</strong>：需要用v-bind来指定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 完整语法 --&gt;</span><br><span class="line">&lt;a v-bind:href=&quot;url&quot;&gt;...&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 缩写 --&gt;</span><br><span class="line">&lt;a :href=&quot;url&quot;&gt;...&lt;/a&gt;</span><br><span class="line">&lt;div v-bind:id=&quot;dynamicId&quot;&gt;  &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>绑定事件</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 完整语法 --&gt;</span><br><span class="line">&lt;a v-on:click=&quot;doSomething&quot;&gt;...&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 缩写 --&gt;</span><br><span class="line">&lt;a @click=&quot;doSomething&quot;&gt;...&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>另外，vue会提供一些事件修饰符，来简化调用event.preventDefault()，event.stopPropagation()的需求。</p>
+<ul>
+<li>stop</li>
+<li>prevent</li>
+<li>capture</li>
+<li>self</li>
+<li>once</li>
+<li>passive</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 阻止单击事件继续传播 --&gt;</span><br><span class="line">&lt;a v-on:click.stop=&quot;doThis&quot;&gt;&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 提交事件不再重载页面 --&gt;</span><br><span class="line">&lt;form v-on:submit.prevent=&quot;onSubmit&quot;&gt;&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 修饰符可以串联 --&gt;</span><br><span class="line">&lt;a v-on:click.stop.prevent=&quot;doThat&quot;&gt;&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 只有修饰符 --&gt;</span><br><span class="line">&lt;form v-on:submit.prevent&gt;&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p>更多详情，请移步文档</p>
+<h2 id="4、内部状态（属性）"><a href="#4、内部状态（属性）" class="headerlink" title="4、内部状态（属性）"></a>4、内部状态（属性）</h2><h3 id="React-3"><a href="#React-3" class="headerlink" title="React"></a>React</h3><p>在React，组件内部自己维护的状态叫State，不能直接去改内部状态state，而是通过setState。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Test extends React.Component() &#123;</span><br><span class="line"> constructor(props) &#123;</span><br><span class="line">   // super一定要写，继承React.Component</span><br><span class="line">    super(props);</span><br><span class="line">	// state在里面定义</span><br><span class="line">	this.state = &#123; name : &apos;daisy&apos; &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  changeName () =&gt; &#123;</span><br><span class="line">     this.setState(&#123; name: &apos;Lily&apos; &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;shopping-list&quot; onClick=      &#123;this.changeName&#125;&gt;</span><br><span class="line">          &#123;this.state.name&#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Vue-3"><a href="#Vue-3" class="headerlink" title="Vue"></a>Vue</h3><p>在Vue, 组件内部自己维护的状态其实就是Data。如果要改的话，直接在方法里通过this或者是通过vue对象来改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var vm = new Vue(&#123;</span><br><span class="line">    el: &apos;#app&apos;,</span><br><span class="line">    //  用于给 View 提供数据，相当于React的state</span><br><span class="line">    data: &#123;</span><br><span class="line">      msg: &apos;Hello Vue&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">	method: &#123;</span><br><span class="line">	  changeMsg: function() &#123;</span><br><span class="line">	    this.msg = &apos;Hello daisy&apos;</span><br><span class="line">	  &#125;</span><br><span class="line">	&#125;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">// 或者</span><br><span class="line">vm.msg = &apos;daisy&apos;;</span><br></pre></td></tr></table></figure>
+<p>但是Vue除了在Data里定义的属性之外，还额外定义<strong>计算属性跟侦听属性</strong>。</p>
+<p>为什么要多两种呢？<br><strong>计算属性</strong>是为了应付逻辑比较复杂的情况。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data = &#123; message: &apos;&apos;&#125;;</span><br><span class="line"></span><br><span class="line">&lt;div id=&quot;example&quot;&gt;</span><br><span class="line">  &#123;&#123; message.split(&apos;&apos;).reverse().join(&apos;&apos;) &#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>在这里需要对message进行多一层的处理，但是直接写在模板里面，觉得不好维护，也不够优雅。</p>
+<p>所以Vue就多搞了一个计算属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var vm = new Vue(&#123;</span><br><span class="line">  el: &apos;#example&apos;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: &apos;Hello&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    reversedMessage: function () &#123;</span><br><span class="line">      return this.message.split(&apos;&apos;).reverse().join(&apos;&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&lt;div id=&quot;example&quot;&gt;</span><br><span class="line">  &#123; reversedMessage &#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>这个reversedMessage 属性将会监听message的改变，而自动重新计算。</p>
+<p><strong>为啥React不需要这个属性呢？</strong></p>
+<p>因为React有render函数，你可以在里面随便多定义一个变量。<br>每一次this.state.message改变的时候，都一定会调用render函数重新渲染，所以就相当于重新计算reversedMessage了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">   const reversedMessage = this.state.message.split(&apos;&apos;).reverse().join(&apos;&apos;)</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;shopping-list&quot;&gt;</span><br><span class="line">        &#123;reversedMessage&#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>侦听属性</strong>感觉跟计算属性很像，但是他们又有不同。<br>侦听属性是为了可以监听到数据的改变，然后做一些异步的或者开销大的操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var watchExampleVM = new Vue(&#123;</span><br><span class="line">  el: &apos;#watch-example&apos;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    question: &apos;aaa&apos;,</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    // 如果 `question` 发生改变，这个函数就会运行</span><br><span class="line">    question: function (newQuestion, oldQuestion) &#123;</span><br><span class="line">      this.getAnswer()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    getAnswer: function () &#123;</span><br><span class="line">    // AJax 请求</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>同样的问题，为啥React不需要这个属性呢？</strong><br>因为React里已经有方法可以做到了。</p>
+<p>React 15的版本，可以通过<code>componentWillReceiveProps</code> 来实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">componentWillReceiveProps(nextProps) &#123;</span><br><span class="line">    if (nextProps.id !== this.props.id) &#123;</span><br><span class="line">    	this.setState(&#123;externalData: null&#125;);</span><br><span class="line">      this._loadAsyncData(nextProps.id);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>React 16的版本，可以通过<code>getDerivedStateFromProps</code>，<code>componentDidUpdate</code>来实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">static getDerivedStateFromProps(nextProps, prevState) &#123;</span><br><span class="line">    // Store prevId in state so we can compare when props change.</span><br><span class="line">    if (nextProps.id !== prevState.prevId) &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        externalData: null,</span><br><span class="line">        prevId: nextProps.id,</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    // No state update necessary</span><br><span class="line">    return null;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidUpdate(prevProps, prevState) &#123;</span><br><span class="line">    if (this.state.externalData === null) &#123;</span><br><span class="line">      this._loadAsyncData(this.props.id);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5、Props"><a href="#5、Props" class="headerlink" title="5、Props"></a>5、Props</h2><p>props 一般指的是父组件传给子组件的属性。</p>
+<h3 id="React-4"><a href="#React-4" class="headerlink" title="React"></a>React</h3><p>React 的props 如果是静态的就直接传，动态的就用变量{}来传,还可以传入方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Test extends React.Component &#123;</span><br><span class="line">   constructor(super) &#123;</span><br><span class="line">     super(props);</span><br><span class="line">	 this.state = &#123; name : &apos;daisy&apos;&#125;</span><br><span class="line">   &#125;</span><br><span class="line">   onClick( ) =&gt; &#123;</span><br><span class="line">      console.log(&quot;onClick&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">   render() &#123;</span><br><span class="line">     return (</span><br><span class="line">	      &lt;Welcome name=&quot;Sara&quot; /&gt;;</span><br><span class="line">          &lt;Welcome name=&#123;this.state.name&#125; /&gt;;</span><br><span class="line">          &lt;Welcome handleClick=&#123;this.onClick&#125; /&gt;;</span><br><span class="line">		  // 传入的方法其实在子组件里，在props也可以拿到。</span><br><span class="line">		  // 使用的时候，直接this.props.handleClick()就可以了。</span><br><span class="line">	  )</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于React写的久了，我默认传props的时候，字符串就是静态的，如果是变量，或者方法，就用{}，结果vue完全不是的，<strong>他们全都是传字符串！</strong></p>
+<h3 id="Vue-4"><a href="#Vue-4" class="headerlink" title="Vue"></a>Vue</h3><p>Vue的静态props跟动态props传的方法不一样。<br>传入的值title为一个常量(静态prop)时，不加v-bind</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;blog-post title=&quot;My journey with Vue&quot;&gt;&lt;/blog-post&gt;</span><br></pre></td></tr></table></figure>
+<p>传入的值title为一个变量(动态prop)时，加v-bind</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;blog-post v-bind:title=&quot;titleValue&quot;&gt;&lt;/blog-post&gt;</span><br></pre></td></tr></table></figure>
+<p>因为如果不用v-bvind，vue就会认为这只是普通的字符串。<br>所以用了v-bind才可以转成变量，然后vue会去data里找这个值。</p>
+<p>传入方法的话，一样要使用v-on，子组件要用emit方法来触发。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Welcome v-on:handleClick=&quot;onClick&quot; &#125; /&gt;;</span><br><span class="line"> // 子组件里要用$emit方法来触发它</span><br><span class="line"> &lt;button v-on:click=&quot;$emit(&apos;handleClick&apos;)&quot;&gt;</span><br><span class="line">   Enlarge text</span><br><span class="line"> &lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<p>大家也看到了，React跟Vue对于props的处理还是很不同的。对于一个从react切过来的人，实在需要点时间去适应vue的props。</p>
+<h2 id="6、双向绑定"><a href="#6、双向绑定" class="headerlink" title="6、双向绑定"></a>6、双向绑定</h2><h3 id="React-5"><a href="#React-5" class="headerlink" title="React"></a>React</h3><p>使用受控组件，就是input的value直接就是state的值。<br>然后监听相应的change事件，用setState改变state的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">class NameForm extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;value: &apos;&apos;&#125;;</span><br><span class="line"></span><br><span class="line">    this.handleChange = this.handleChange.bind(this);</span><br><span class="line">    this.handleSubmit = this.handleSubmit.bind(this);</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  // 这里通过setState去改变state的值</span><br><span class="line">  handleChange(event) &#123;</span><br><span class="line">    this.setState(&#123;value: event.target.value&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleSubmit(event) &#123;</span><br><span class="line">    alert(&apos;提交的名字: &apos; + this.state.value);</span><br><span class="line">    event.preventDefault();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</span><br><span class="line">        &lt;label&gt;</span><br><span class="line">          名字:</span><br><span class="line">		  // 当input的值发生改变的时候就会调用handleChange</span><br><span class="line">		  // 通过state改变value的值，所以这里的显示会随用户</span><br><span class="line">		  // 的输入更新而更新</span><br><span class="line">          &lt;input type=&quot;text&quot; value=&#123;this.state.value&#125; onChange=&#123;this.handleChange&#125; /&gt;</span><br><span class="line">        &lt;/label&gt;</span><br><span class="line">        &lt;input type=&quot;submit&quot; value=&quot;提交&quot; /&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Vue-5"><a href="#Vue-5" class="headerlink" title="Vue"></a>Vue</h3><p>vue采用v-model的形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input v-model=&quot;message&quot; placeholder=&quot;edit me&quot;&gt;</span><br><span class="line">&lt;p&gt;Message is: &#123;&#123; message &#125;&#125;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>实际上v-model 是一个语法糖， 上面可以翻译成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`&lt;input :value=&apos;message&apos; @input=&quot;message = $event.targer.value&quot;&gt;`</span><br></pre></td></tr></table></figure>
+<p>input本身有个oninput事件，每当输入框发生变化，就会触发onput,将最新的value传给他。</p>
+<p>v-model 在内部为不同的输入元素使用不同的属性并抛出不同的事件：</p>
+<ul>
+<li>text 和 textarea 元素使用 value 属性和 input 事件；</li>
+<li>checkbox 和 radio 使用 checked 属性和 change 事件；</li>
+<li>select 字段将 value 作为 prop 并将 change 作为事件。</li>
+</ul>
+<p>v-model 不仅仅可以用在原生html元素上，还可以用在组件上。用在组件上的时候v-on用于监听事件，emit用来触发事件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;demo&quot;&gt;</span><br><span class="line">  &lt;currency-input v-model=&quot;price&quot;&gt;&lt;/currentcy-input&gt;</span><br><span class="line">  // 相当于是&lt;currency-input :value=&quot;price&quot; v-on:input=&quot;price = arguments[0]&quot;&gt;&lt;/currentcy-input&gt;</span><br><span class="line">  // 这里用v-on监听事件，相当于传给了子组件value，还有input方法</span><br><span class="line">  &lt;span&gt;&#123;&#123;price&#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">Vue.component(&apos;currency-input&apos;, &#123;</span><br><span class="line">  template: `</span><br><span class="line">    &lt;span&gt;</span><br><span class="line">      &lt;input</span><br><span class="line">        ref=&quot;input&quot;</span><br><span class="line">        :value=&quot;value&quot; // 这里将父组件传来的value赋值给input的value</span><br><span class="line">        @input=&quot;$emit(&apos;input&apos;, $event.target.value)&quot; // 这里去触发input方法</span><br><span class="line">      &gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">  `,</span><br><span class="line">  props: [&apos;value&apos;],</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var demo = new Vue(&#123;</span><br><span class="line">  el: &apos;#demo&apos;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    price: 100,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>总结一下，React在双向绑定方面，其实还是用着state在帮忙，传给子组件的方法也是直接传props即可，子组件直接通过props来调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Welcome handleClick=&#123;this.onClick&#125; /&gt;;</span><br><span class="line">       // 传入的方法其实在子组件里，在props也可以拿到。</span><br><span class="line">       // 使用的时候，直接this.props.handleClick()就可以了。</span><br></pre></td></tr></table></figure>
+<p>而Vue是利用了v-model，自动帮你做了这件事。而在传给子组件的时候，需要用$emit来配合。<br>同时，你一定要知道v-model 实际上是可以翻译成这样的语法糖。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input :value=&apos;message&apos; @input=&quot;message = $event.targer.value&quot;&gt;`</span><br></pre></td></tr></table></figure>
+<p>这样你才知道父组件在用v-model的时候，实际上传了value，跟input给子组件。</p>
+<h2 id="7、渲染child节点"><a href="#7、渲染child节点" class="headerlink" title="7、渲染child节点"></a>7、渲染child节点</h2><h3 id="React-6"><a href="#React-6" class="headerlink" title="React"></a>React</h3><p>React里可以通过this.props.children 获取。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class NotesList extends React.Component &#123;</span><br><span class="line">   render() &#123;</span><br><span class="line">      return (</span><br><span class="line">	     &lt;ol&gt;</span><br><span class="line">			  &#123;</span><br><span class="line">				.map(function (child) &#123;</span><br><span class="line">				  return &lt;li&gt;&#123;child&#125;&lt;/li&gt;</span><br><span class="line">				  // 渲染出来就是</span><br><span class="line">				  // &lt;li&gt; &lt;span&gt;hello&lt;/span&gt; &lt;/li&gt;</span><br><span class="line">				  // &lt;li&gt; &lt;span&gt;world&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">				&#125;)</span><br><span class="line">			  &#125;</span><br><span class="line">       &lt;/ol&gt;</span><br><span class="line">	   )</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">React.render(</span><br><span class="line">  &lt;NotesList&gt;</span><br><span class="line">    &lt;span&gt;hello&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;world&lt;/span&gt;</span><br><span class="line">  &lt;/NotesList&gt;,</span><br><span class="line">  document.body</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="Vue-6"><a href="#Vue-6" class="headerlink" title="Vue"></a>Vue</h3><p>Vue引入了一个插槽的概念。<br>通过父组件中插入一个<code>&lt;slot&gt;</code>的标签来实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 父组件 Message的html</span><br><span class="line">&lt;div&gt;</span><br><span class="line">   hello,world</span><br><span class="line">   &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">// 在调用的时候</span><br><span class="line">&lt;Message&gt;</span><br><span class="line">   &lt;span&gt; hello &lt;/span&gt;</span><br><span class="line">   &lt;span&gt; daisy &lt;/span&gt;</span><br><span class="line">&lt;/Message&gt;</span><br></pre></td></tr></table></figure>
+<p>最后就会渲染出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">   hello,world</span><br><span class="line">   &lt;span&gt; hello &lt;/span&gt;</span><br><span class="line">   &lt;span&gt; daisy &lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>Vue还提供了指定区域的插槽功能，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 父组件 Message的html</span><br><span class="line">&lt;div&gt;</span><br><span class="line">   hello,world</span><br><span class="line">   &lt;slot name=&quot;firstName&quot;&gt;&lt;/slot&gt;</span><br><span class="line">   &lt;slot name=&quot;lastName&quot;&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">// 在调用的时候，需要使用&lt;template&gt;元素，用上面的</span><br><span class="line">// v-slot 来指定名称</span><br><span class="line">&lt;Message&gt;</span><br><span class="line">   &lt;template v-slot:firstName&gt;</span><br><span class="line">    &lt;h1&gt;daisy&lt;/h1&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line"></span><br><span class="line">   &lt;template v-slot:lastName&gt;</span><br><span class="line">     &lt;h1&gt;huang&lt;/h1&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/Message&gt;</span><br></pre></td></tr></table></figure>
+        </div>
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    
+	<div class="container">
+           <ul class="pager">
+    	     
+      	     <li class="previous">
+              <a href="/2019/02/27/理解react中的super-与super-props/" rel="prev">下一篇</a>
+             </li>
+           
+           
+              <li class="next">
+              <a href="/2019/02/10/Flux架构模式/" rel="prev">上一篇</a>
+            </li>
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+</section>
+
+
+    </div>
+   
+　　　　
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>Hexo &copy; 2019</span>
+    
+      <span class="split">|</span>
+      <span>来自Alen</span>
+    
+  </p>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>

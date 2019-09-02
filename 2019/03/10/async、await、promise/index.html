@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="John Doe">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="async、await、promise">
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="Hexo">
+  <!--Type page-->
+  
+      <meta property="og:type" content="article">
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- 百度统计 -->
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+  	var hm = document.createElement("script");
+  	hm.src = "https://hm.baidu.com/hm.js?c0451e16533956173997b85f7a8de666";
+  	var s = document.getElementsByTagName("script")[0]; 
+  	s.parentNode.insertBefore(hm, s);
+	})();
+    </script>
+  <!-- Title -->
+  
+  <title>async、await、promise - Hexo</title>
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+    <!--font-awesome-->
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="http://img1.imgtn.bdimg.com/it/u=3575328070,2928678511&amp;fm=26&amp;gp=0.jpg" alt="Hexo" height="60">
+        
+      </a>
+    </div>
+    <a class="header-name" href="/">
+            <span>Hexo</span>
+            的部落宅
+        </a>
+    <!-- navbar -->
+    <nav class="navbar">
+      <!--  nav links -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  <i class="fa fa-home "></i>
+                
+                首页
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  <i class="fa fa-archive "></i>
+                
+                归档
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  <i class="fa fa-user "></i>
+                
+                关于
+              </a>
+            </li>
+          
+            <li>
+              <a href="/project">
+                
+                  <i class="fa fa-folder-open "></i>
+                
+                项目
+              </a>
+            </li>
+          
+            <li>
+              <a href="/photo">
+                
+                  <i class="fa fa-photo "></i>
+                
+                相册
+              </a>
+            </li>
+          
+            <li>
+              <a href="/guestbook">
+                
+                  <i class="fa fa-edit "></i>
+                
+                留言
+              </a>
+            </li>
+          
+            <li>
+              <a href="/atom.xml">
+                
+                  <i class="fa fa-send "></i>
+                
+                RSS
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            async、await、promise
+            
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2019-03-10
+          </p>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">async function async1()&#123;</span><br><span class="line">    console.log(&apos;async1 start&apos;)</span><br><span class="line">    await async2()</span><br><span class="line">    console.log(&apos;async1 end&apos;)</span><br><span class="line">&#125;</span><br><span class="line">async function async2()&#123;</span><br><span class="line">    console.log(&apos;async2&apos;)</span><br><span class="line">&#125;</span><br><span class="line">console.log(&apos;script start&apos;)</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">    console.log(&apos;setTimeout&apos;) </span><br><span class="line">&#125;,0)  </span><br><span class="line">async1();</span><br><span class="line">new Promise(function(resolve)&#123;</span><br><span class="line">    console.log(&apos;promise1&apos;)</span><br><span class="line">    resolve();</span><br><span class="line">&#125;).then(function()&#123;</span><br><span class="line">    console.log(&apos;promise2&apos;)</span><br><span class="line">&#125;)</span><br><span class="line">console.log(&apos;script end&apos;)</span><br></pre></td></tr></table></figure>
+<p>求打印结果是什么？</p>
+<p>相信是个前端都知道啦，这道题目考的就是js里面的事件循环和回调队列咯～<br>今天题主假设看客都已经了解了setTimeout是宏任务会在最后执行的前提（因为它不是今天要讨论的重点），我们主要来讲讲<strong>promise</strong>、<strong>async</strong>和<strong>await</strong>之间的关系。</p>
+<p>先上正确答案：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">script start</span><br><span class="line">async1 start</span><br><span class="line">async2</span><br><span class="line">promise1</span><br><span class="line">script end</span><br><span class="line">promise2</span><br><span class="line">async1 end</span><br><span class="line">setTimeout</span><br></pre></td></tr></table></figure>
+<p>事实上，没有在控制台执行打印之前，我觉得它应该是这样输出的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">script start</span><br><span class="line">async1 start</span><br><span class="line">async2</span><br><span class="line">async1 end</span><br><span class="line">promise1</span><br><span class="line">script end</span><br><span class="line">promise2</span><br><span class="line">setTimeout</span><br></pre></td></tr></table></figure>
+<p>为什么这样认为呢？因为我们（粗浅地）知道await之后的语句会等await表达式中的函数执行完得到结果后，才会继续执行。</p>
+<p><strong>MDN</strong>是这样描述await的：</p>
+<blockquote>
+<p>async 函数中可能会有 await 表达式，这会使 async 函数暂停执行，等待表达式中的 Promise 解析完成后继续执行 async 函数并返回解决结果。</p>
+</blockquote>
+<p>会认为输出结果是以上的样子，是因为没有真正理解这句话的含义。</p>
+<p>阮一峰老师的解释我觉得更容易理解：</p>
+<blockquote>
+<p>async 函数返回一个 Promise 对象，当函数执行的时候，一旦遇到 await 就会先返回，等到触发的异步操作完成，再接着执行函数体内后面的语句。</p>
+</blockquote>
+<p>对啦就是这样，MDN描述的暂停执行，实际上是<strong>让出了线程（跳出async函数体）</strong>然后继续执行后面的脚本的。这样一来我们就明白了，所以我们再看看上面那道题，按照这样描述那么他的输出结果就应该是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">script start</span><br><span class="line">async1 start</span><br><span class="line">async2</span><br><span class="line">promise1</span><br><span class="line">script end</span><br><span class="line">async1 end</span><br><span class="line">promise2</span><br><span class="line">setTimeout</span><br></pre></td></tr></table></figure>
+<p>好像哪里不太对？对比控制台输出的正确结果，咦～有两句输出是不一样的呀！！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">async1 end</span><br><span class="line">promise2</span><br></pre></td></tr></table></figure>
+<p>为什么会这样呢？这也是这道题目最难理解的一个地方。要搞明白这个事情，我们需要先来回顾一些概念：</p>
+<h3 id="async"><a href="#async" class="headerlink" title="async"></a>async</h3><blockquote>
+<p>async function 声明将定义一个返回 AsyncFunction 对象的异步函数。</p>
+<p>当调用一个 async 函数时，会返回一个 Promise 对象。当这个 async 函数返回一个值时，Promise 的 resolve 方法会负责传递这个值；当 async 函数抛出异常时，Promise 的 reject 方法也会传递这个异常值。</p>
+</blockquote>
+<p>所以你现在知道咯，使用 <strong>async</strong> 定义的函数，当它被调用时，它返回的其实是一个Promise对象。<br>我们再来看看 <strong>await</strong> 表达式执行会返回什么值。</p>
+<h3 id="await"><a href="#await" class="headerlink" title="await"></a>await</h3><blockquote>
+<p>语法：[return_value] = await expression;</p>
+<p>表达式（express）：一个 Promise 对象或者任何要等待的值。</p>
+<p>返回值（return_value）：返回 Promise 对象的<strong>处理结果</strong>。如果等待的不是 Promise 对象，则返回该值本身。</p>
+</blockquote>
+<p>所以，当await操作符后面的表达式是一个Promise的时候，它的返回值，实际上就是Promise的回调函数resolve的参数。</p>
+<p>明白了这两个事情后，我还要再啰嗦两句。我们都知道Promise是一个立即执行函数，但是他的成功（或失败：reject）的回调函数resolve却是一个异步执行的回调。<strong>当执行到resolve()时，这个任务会被放入到回调队列中，等待调用栈有空闲时事件循环再来取走它。</strong></p>
+<h4 id="终于进入正文：解题"><a href="#终于进入正文：解题" class="headerlink" title="终于进入正文：解题"></a>终于进入正文：解题</h4><p>好了铺垫完这些概念，我们回过头看上面那道题目困惑的那两句关键的地方（建议一边对着题目一边看解析我怕我讲的太快你跟不上啊哈哈😂）。</p>
+<p>执行到 async1 这个函数时，首先会打印出“async1 start”（这个不用多说了吧，async 表达式定义的函数也是立即执行的）；</p>
+<p>然后执行到 await async2()，发现 async2 也是个 async 定义的函数，所以直接执行了“console.log(‘async2’)”，同时async2返回了一个Promise，<strong>划重点：此时返回的Promise会被放入到回调队列中等待，await会让出线程（js是单线程还用我介绍吗），接下来就会跳出 async1函数 继续往下执行。</strong></p>
+<p>然后执行到 new Promise，前面说过了promise是立即执行的，所以先打印出来“promise1”，然后执行到 resolve 的时候，resolve这个任务就被放到回调队列中（前面都讲过了上课要好好听啊喂）等待，然后跳出Promise继续往下执行，输出“script end”。</p>
+<p>接下来是重头戏。同步的事件都循环执行完了，调用栈现在已经空出来了，那么事件循环就会去回调队列里面取任务继续放到调用栈里面了。</p>
+<p>这时候取到的第一个任务，就是前面 async1 放进去的Promise，执行Promise时发现又遇到了他的真命天子resolve函数，<strong>划重点：这个resolve又会被放入任务队列继续等待，然后再次跳出 async1函数 继续下一个任务。</strong></p>
+<p>接下来取到的下一个任务，就是前面 new Promise 放进去的 <strong>resolve回调</strong> 啦 yohoo～这个resolve被放到调用栈执行，并输出“promise2”，然后继续取下一个任务。</p>
+<p>后面的事情相信你已经猜到了，没错调用栈再次空出来了，事件循环就取到了下一个任务：<strong>历经千辛万苦终于轮到的那个Promise的resolve回调！！！</strong>执行它（啥也不会打印的，因为 async2 并没有return东西，所以这个resolve的参数是undefined），此时 await 定义的这个 Promise 已经执行完并且返回了结果，所以可以继续往下执行 async1函数 后面的任务了，那就是“console.log(‘async1 end’)”。</p>
+<p>谜之困惑的那两句执行结果（“promise2”、“async1 end”）就是这样来的～</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>总结下来这道题目考的，其实是以下几个点：</p>
+<ol>
+<li>调用栈</li>
+<li>事件循环</li>
+<li>任务队列</li>
+<li>promise的回调函数执行</li>
+<li>async表达式的返回值</li>
+<li>await表达式的作用和返回值</li>
+</ol>
+
+        </div>
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    
+	<div class="container">
+           <ul class="pager">
+    	     
+      	     <li class="previous">
+              <a href="/2019/03/20/ES6特性之模板字符串/" rel="prev">下一篇</a>
+             </li>
+           
+           
+              <li class="next">
+              <a href="/2019/02/27/理解react中的super-与super-props/" rel="prev">上一篇</a>
+            </li>
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+</section>
+
+
+    </div>
+   
+　　　　
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>Hexo &copy; 2019</span>
+    
+      <span class="split">|</span>
+      <span>来自Alen</span>
+    
+  </p>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>

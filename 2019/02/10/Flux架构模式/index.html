@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="John Doe">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="Flux架构模式">
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="Hexo">
+  <!--Type page-->
+  
+      <meta property="og:type" content="article">
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- 百度统计 -->
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+  	var hm = document.createElement("script");
+  	hm.src = "https://hm.baidu.com/hm.js?c0451e16533956173997b85f7a8de666";
+  	var s = document.getElementsByTagName("script")[0]; 
+  	s.parentNode.insertBefore(hm, s);
+	})();
+    </script>
+  <!-- Title -->
+  
+  <title>Flux架构模式 - Hexo</title>
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+    <!--font-awesome-->
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="http://img1.imgtn.bdimg.com/it/u=3575328070,2928678511&amp;fm=26&amp;gp=0.jpg" alt="Hexo" height="60">
+        
+      </a>
+    </div>
+    <a class="header-name" href="/">
+            <span>Hexo</span>
+            的部落宅
+        </a>
+    <!-- navbar -->
+    <nav class="navbar">
+      <!--  nav links -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  <i class="fa fa-home "></i>
+                
+                首页
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  <i class="fa fa-archive "></i>
+                
+                归档
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  <i class="fa fa-user "></i>
+                
+                关于
+              </a>
+            </li>
+          
+            <li>
+              <a href="/project">
+                
+                  <i class="fa fa-folder-open "></i>
+                
+                项目
+              </a>
+            </li>
+          
+            <li>
+              <a href="/photo">
+                
+                  <i class="fa fa-photo "></i>
+                
+                相册
+              </a>
+            </li>
+          
+            <li>
+              <a href="/guestbook">
+                
+                  <i class="fa fa-edit "></i>
+                
+                留言
+              </a>
+            </li>
+          
+            <li>
+              <a href="/atom.xml">
+                
+                  <i class="fa fa-send "></i>
+                
+                RSS
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            Flux架构模式
+            
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2019-02-10
+          </p>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h2 id="Flux模式"><a href="#Flux模式" class="headerlink" title="Flux模式"></a>Flux模式</h2><p>Flux的核心思想就是<strong>数据和逻辑永远单向流动</strong></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1783332-b7ec84ffbf32001b.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp" alt="img"></p>
+<p>flux.png</p>
+<p>众所周知，React提倡的是一种单向数据流，指的是父子组件之间的单向数据流。而Flux中的单向数据流则是在整体架构上的延伸。在Flux应用中，数据从action到dispatcher，再到store,最终到view的路线是单向不可逆的，各个角色之间不会像MVC模式中那样存在交错的连线</p>
+<p>因为要实现单向数据流，所以在Flux模式中的dispatcher中定义了严格的规则来限定我们对数据的修改操作。只能通过dispatcher来修改store中的state，所以同时，store中不能不暴露setter，强化数据修改的纯洁性。</p>
+<p>上面谈到的如果渲染函数只有一个后，即每次数据的更新都会调用重渲染，会十分的影响性能。在React中，通过Virtual DOM这个技术来进行优化性能，因为每次重渲染的是内存上的Virtual DOM，并由于PureRender保障从重渲染到局部渲染的转换。</p>
+<p>一个Flux应用由三大部分组成<code>dispatcher</code>,<code>store</code>和<code>view</code></p>
+<ul>
+<li><strong>dispatcher</strong>负责分发事件</li>
+<li><strong>store</strong>负责保存数据，同时响应事件并更新数据</li>
+<li><strong>view</strong>负责订阅store中的数据，并使用这些数据渲染相应的页面</li>
+</ul>
+<h3 id="Flux的不足"><a href="#Flux的不足" class="headerlink" title="Flux的不足"></a>Flux的不足</h3><p>虽然Flux的中心化控制十分优雅。但是它最大的问题就是Flux的冗余代码太多。虽然Flux源码中几乎只有dispatcher的实现，但是在每个应用中东需要手动创建一个dispatcher的实例，而且在一个应用中含有多个store。</p>
+<h2 id="基于Flux思想的Redux"><a href="#基于Flux思想的Redux" class="headerlink" title="基于Flux思想的Redux"></a>基于Flux思想的Redux</h2><p>Redux是基于Flux架构思想的一个库的实现，它主要的核心运作流程为：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1783332-2067204cd3ebe90c.png?imageMogr2/auto-orient/strip|imageView2/2/w/1074/format/webp" alt="img"></p>
+<p>redux_model.png</p>
+<h3 id="Redux与Flux的区别"><a href="#Redux与Flux的区别" class="headerlink" title="Redux与Flux的区别"></a>Redux与Flux的区别</h3><ul>
+<li>Redux中只有一个store，而Flux中有多个store来存储应用数据，并在store里面执行更新逻辑，当store变化的时候再通知controller-view更新自己的数据，Redux是将各个store整合成一个完整的store,并且可以根据这个store来得到完整的state，而且更新的逻辑也不再store中，而是在reducer中。</li>
+<li>Redux没有Dispatcher这个概念。它使用的是reducer来进行事件的处理，reducer是一个纯函数<code>(preState, action) =&gt; newState</code>,在Redux应用中，可能有多个reducer，每一reducer来负责维护应用整体state树中某一部分，多个reducer通过<code>combineReducers</code>方法合成一个根reducer,来维护整个state</li>
+</ul>
+<p><strong>如图的比较</strong><br>Flux：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1783332-fef84853bf874d2c.png?imageMogr2/auto-orient/strip|imageView2/2/w/851/format/webp" alt="img"></p>
+<p>flux_c.png</p>
+<p>Redux:</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1783332-709ca2048c134304.png?imageMogr2/auto-orient/strip|imageView2/2/w/829/format/webp" alt="img"></p>
+<p>redux_c.png</p>
+<h3 id="Redux设计和使用的三大原则"><a href="#Redux设计和使用的三大原则" class="headerlink" title="Redux设计和使用的三大原则"></a>Redux设计和使用的三大原则</h3><ul>
+<li><p><strong>单一的数据源</strong></p>
+<blockquote>
+<p>在Redux的思想里，一个应用永远只有唯一的数据源，使用单一数据源的好处在于整个应用状态都保存在一个对象中，我们随时可以提取出整个应用的状态进行持久化,这样的设计也为SSR提供了可能</p>
+</blockquote>
+</li>
+<li><p><strong>状态是只读的</strong></p>
+<blockquote>
+<p>状态是只读的这个和Flux的思想相同，但是Redux中还限制了store的setter从而限制修改应用状态的能力。在Redux中，我们不会用代码来定义一个store，而是通过reducer，通过当前触发的action来对当前应用的state进行迭代，这里没有直接改变应用的状态，而是返回了一个全新的状态。</p>
+</blockquote>
+</li>
+<li><p><strong>状态修改均由纯函数完成</strong></p>
+<blockquote>
+<p>在Flux中，是通过dispatcher的dispatch来触发action，不仅产生了冗余代码，而且直接修改了store中的数据，无法保存每次数据变化前后的状态，在Redux中，通过纯函数reducer来确定状态的改变，因为reducer是纯函数，所以形同的输入，一定会得到相同的输出，这样的话，返回的是一个全新的state，可以跟踪每一次触发action而改变状态的结果成为了可能，也就是可以达到炫酷的time travel 调试方法。</p>
+</blockquote>
+</li>
+</ul>
+
+        </div>
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    
+	<div class="container">
+           <ul class="pager">
+    	     
+      	     <li class="previous">
+              <a href="/2019/02/18/react与vue的区别/" rel="prev">下一篇</a>
+             </li>
+           
+           
+              <li class="next">
+              <a href="/2019/02/02/什么是webpack/" rel="prev">上一篇</a>
+            </li>
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+</section>
+
+
+    </div>
+   
+　　　　
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>Hexo &copy; 2019</span>
+    
+      <span class="split">|</span>
+      <span>来自Alen</span>
+    
+  </p>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>

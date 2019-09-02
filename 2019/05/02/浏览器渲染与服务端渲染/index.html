@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="Hello World">
+      <meta property="og:title" content="浏览器渲染与服务端渲染">
   
   <!--Open Graph Description-->
   
@@ -42,7 +42,7 @@
     </script>
   <!-- Title -->
   
-  <title>Hello World - Hexo</title>
+  <title>浏览器渲染与服务端渲染 - Hexo</title>
 
 
   <link rel="shortcut icon" href="/favicon.ico">
@@ -161,25 +161,41 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            Hello World
+            浏览器渲染与服务端渲染
             
           </h1>
          
         </div>
          <p class="a-posted-on">
-          2019-04-03
+          2019-05-02
           </p>
         <!-- Post Main Content -->
         <div class="entry-content">
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+          <p>技术就叫渲染。这工作放在服务器上做就是服务器渲染，放在浏览器做就是浏览器渲染。</p>
+<p>这里的渲染，就是指生成html文档的过程，和浏览器渲染html没有关系。</p>
+<p>浏览器端渲染，指的是用js去生成html，前端做路由。举例：React, Vue等等前端框架。适合单页面应用程序。</p>
+<p>服务器端渲染，指的是用后台语言通过一些模版引擎生成html。举例：PHP文件、JSP文件、Python的Flask配合Jinja引擎、Django框架、Java配合vm模版引擎、NodeJS配合Jade。适合多页面应用。其实现在大部分网站还是这种形式。</p>
+<p>所以有为了让单页面应用利于SEO，让服务器和客户端同构，也使用React/Vue渲染的方案。</p>
+<p>PS: Segmentfault也是服务端渲染。</p>
+<p>浏览器渲染</p>
+<p>单页应用用的基本都是浏览器渲染。优点很明确，后端只提供数据，前端做视图和交互逻辑，分工明确。服务器只提供接口，路由以及渲染都丢给前端，服务器计算压力变轻了。但是弱点就是用户等待时间变长了，尤其在请求数多而且有一定先后顺序的时候。</p>
+<p>服务器渲染</p>
+<p>服务器接到用户请求之后，计算出用户需要的数据，然后将数据更新成视图（也就是一串dom字符）发给客户端，客户端直接将这串字符塞进页面即可。这样做的好处是响应很快，用户体验会比较好，另外对于搜索引擎来说也是友好的，有SEO优化。nodejs层的服务器渲染，还有一个明显的好处就是前端性能优化更顺手了，可操作的空间大了。但是缺点也很明显，如果不是增加一个node层的话，前后端责任分工不明，不能很好的并行开发。另外也增加了服务器计算压力（虽然可以做渲染缓存，但毕竟是多做了计算）。</p>
+<p>客户端渲染路线：</p>
+<ol>
+<li>请求一个html -&gt; 2. 服务端返回一个html -&gt; 3. 浏览器下载html里面的js/css文件 -&gt; 4. 等待js文件下载完成 -&gt; 5. 等待js加载并初始化完成 -&gt; 6. js代码终于可以运行，由js代码向后端请求数据( ajax/fetch ) -&gt; 7. 等待后端数据返回 -&gt; 8. 客户端从无到完整地，把数据渲染为响应页面</li>
+</ol>
+<p>服务端渲染路线：</p>
+<ol>
+<li>请求一个html -&gt; 2. 服务端请求数据( 内网请求快 ) -&gt; 3. 服务器初始渲染（服务端性能好，较快） -&gt; 4. 服务端返回已经有正确内容的页面 -&gt; 5. 客户端请求js/css文件 -&gt; 6. 等待js文件下载完成 -&gt; 7. 等待js加载并初始化完成 -&gt; 8. 客户端把剩下一部分渲染完成( 内容小，渲染快 )</li>
+</ol>
+<p>对同一个组件，服务端渲染“可视的”一部分( render/componentWillMount部分代码 )，为确保组件有完善的生命周期及事件处理，客户端需要再次渲染。即：服务端渲染，实际上也是需要客户端进行 再次地、但开销很小的二次渲染。</p>
+<p>根据以上特点，在用户体验要求比较高的页面（首屏）、重复较多的公共页面可以考虑使用服务器渲染，减少ajax请求和提升用户体验。</p>
+<p>时间耗时比较：</p>
+<p>数据请求：由服务端请求数据而不是客户端请求数据，这是“快”的一个主要原因。服务端在内网进行请求，数据响应速度快。客户端在不同网络环境进行数据请求，且外网http请求开销大，导致时间差（主要原因）。</p>
+<p>步骤：服务端是先请求数据然后渲染“可视”部分，而客户端是等待js代码下载、加载完成再请求数据、渲染。即：服务端渲染不用等待js代码下载完成再请求数据，并会返回一个已经有内容的页面。</p>
+<p>渲染性能：服务端性能比客户端高，渲染速度快( 猜测，该项数据不详 )。</p>
+<p>渲染内容：服务端渲染会把”可视“部分先渲染，然后交给客户端再作部分渲染。而客户端渲染，则是从无到有，需要经历完整的渲染步骤。　　　　</p>
 
         </div>
       </article>
@@ -190,12 +206,12 @@
            <ul class="pager">
     	     
       	     <li class="previous">
-              <a href="/2019/04/15/伪元素/" rel="prev">下一篇</a>
+              <a href="/2019/05/18/浅谈JS事件/" rel="prev">下一篇</a>
              </li>
            
            
               <li class="next">
-              <a href="/2019/04/01/理解JavaScript堆和栈的区别/" rel="prev">上一篇</a>
+              <a href="/2019/04/15/伪元素/" rel="prev">上一篇</a>
             </li>
            
           </ul>

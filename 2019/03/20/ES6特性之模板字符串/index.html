@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="John Doe">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="ES6特性之模板字符串">
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="Hexo">
+  <!--Type page-->
+  
+      <meta property="og:type" content="article">
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- 百度统计 -->
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+  	var hm = document.createElement("script");
+  	hm.src = "https://hm.baidu.com/hm.js?c0451e16533956173997b85f7a8de666";
+  	var s = document.getElementsByTagName("script")[0]; 
+  	s.parentNode.insertBefore(hm, s);
+	})();
+    </script>
+  <!-- Title -->
+  
+  <title>ES6特性之模板字符串 - Hexo</title>
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+    <!--font-awesome-->
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="http://img1.imgtn.bdimg.com/it/u=3575328070,2928678511&amp;fm=26&amp;gp=0.jpg" alt="Hexo" height="60">
+        
+      </a>
+    </div>
+    <a class="header-name" href="/">
+            <span>Hexo</span>
+            的部落宅
+        </a>
+    <!-- navbar -->
+    <nav class="navbar">
+      <!--  nav links -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  <i class="fa fa-home "></i>
+                
+                首页
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  <i class="fa fa-archive "></i>
+                
+                归档
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  <i class="fa fa-user "></i>
+                
+                关于
+              </a>
+            </li>
+          
+            <li>
+              <a href="/project">
+                
+                  <i class="fa fa-folder-open "></i>
+                
+                项目
+              </a>
+            </li>
+          
+            <li>
+              <a href="/photo">
+                
+                  <i class="fa fa-photo "></i>
+                
+                相册
+              </a>
+            </li>
+          
+            <li>
+              <a href="/guestbook">
+                
+                  <i class="fa fa-edit "></i>
+                
+                留言
+              </a>
+            </li>
+          
+            <li>
+              <a href="/atom.xml">
+                
+                  <i class="fa fa-send "></i>
+                
+                RSS
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            ES6特性之模板字符串
+            
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2019-03-20
+          </p>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>在项目开发中，拼接字符串是不可缺少的，动态创建dom元素以及js操作数据都要拼接字符串，在es6出来之前，我们都通常用引号(‘’或””)和加号(+)来拼接字符串，麻烦不说而且还容易出错，就拿个其中的代码例子说：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">menuUl+=&quot;&lt;li&gt;&lt;i class=&apos;&quot;+menudata[i].icon+&quot;&apos;&gt;&lt;/i&gt;&lt;p onclick=\&quot;click()\&quot;&gt;&quot;+ menudata[i].text +&quot;&lt;/p&gt;&lt;/li&gt;&quot;;</span><br></pre></td></tr></table></figure>
+<p>其中用到了单引号和双引号，加号以及转义字符，当时写起来颇有费劲。现在es6中的模板字符串大大解决了这种复杂又麻烦的问题</p>
+<p>传统拼接字符串的缺点：</p>
+<ul>
+<li>不能多行拼接</li>
+<li>不能在拼接中插入变量</li>
+<li>不能进行简单的运算</li>
+<li>不能处理引号之间的嵌套问题</li>
+<li>麻烦，拼接过多一稍微写错就报错或显示不出来。</li>
+</ul>
+<p><strong>模板字符串</strong>就是使用两个反撇号把任何变量以及字符串都包含起来。反撇号就是键盘上tab键上方的键</p>
+<p><strong>写法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let word = `超级`</span><br></pre></td></tr></table></figure>
+<p><strong>特性：</strong><br>1 模板字符串可以引入变量，就是在字符串中用${变量名}<br>⚠️ ${} 模板占位符 在字符串中，javascript将模板占位符里的值插入其中，如果值是数组或者对象，他会调用toString()方法转化为字符串。如果是函数，则会使用标签模板。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let word = `超级`;console.log(`今天天气$&#123;word&#125;不错`); // 今天天气超级不错</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(`[1,2,3,4,5]`) // [1,2,3,4,5]console.log(typeof `[1,2,3,4,5]`) //string</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(`&#123;name:&apos;peter&apos;&#125;`) //&#123;name:&apos;peter&apos;&#125;console.log(typeof `&#123;name:&apos;peter&apos;&#125;`) // string</span><br></pre></td></tr></table></figure>
+<p>2 模板字符串可以进行简单的运算，通过${运算}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(`今天天气的温度是$&#123;parseInt(23.3)&#125;`) //今天天气的温度是23console.log(`$&#123;1 + 2&#125;`)</span><br></pre></td></tr></table></figure>
+<p>3 模板字符串可以进行嵌套，反撇号中再可用反撇号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(`2 + 3 $&#123;2 + 3 &gt; 6 ? `&gt;`:`&lt;`&#125; 6`) // 2 + 3 &lt; 6</span><br></pre></td></tr></table></figure>
+<p>4 模板字符串可以多行拼接，就是字符串可以换行<br>⚠️ 模板字符串中所有的空格、新行、缩进，都会原样输出在生成的字符串中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(`今天天气超级不错，明天的天气也肯定不错。`)</span><br></pre></td></tr></table></figure>
+<p>5 模板字符串主要就是简单方便，和其他的引号和加号都互不干扰，就那刚才的代码就可以这样写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">menuUl+=`&lt;li&gt;&lt;i class=&quot;$&#123;menudata[i].icon&#125;&quot;&gt;&lt;/i&gt;&lt;p onclick=&quot;click()&quot;&gt;$&#123;menudata[i].text&#125;&lt;/p&gt;&lt;/li&gt;`;</span><br></pre></td></tr></table></figure>
+<p>这样看起来就整洁，可维护。</p>
+<p>es6 模板字符串的优点：<br>1 可以多行拼接<br>2 可以在拼接中插入变量<br>3 可以进行简单的运算<br>4 可以互相嵌套<br>5 简单，方便，整洁</p>
+<p><strong>标签模板</strong><br>在模板字符串开始的反撇号前附加一个额外的标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let message = SaferHTML`&lt;p&gt;$&#123;bonk.sender&#125; 向你示好。&lt;/p&gt;`;</span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let message = SaferHTML(templateData, bonk.sender);</span><br></pre></td></tr></table></figure>
+<p>SaferHTML的方法如下：对其中的一些转义字符的转义。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function SaferHTML(templateData) &#123;  var s = templateData[0];  for (var i = 1; i &lt; arguments.length; i++) &#123;    var arg = String(arguments[i]);    // 如果有转义字符    s += arg.replace(/&amp;/g, &quot;&amp;amp;&quot;)                 .replace(/&lt;/g, &quot;&amp;lt;&quot;)                 .replace(/&gt;/g, &quot;&amp;gt;&quot;);    // 如果没有转义字符    s += templateData[i];  &#125;  return s;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let div = document.querySelector(&apos;div&apos;);div.innerHTML = SaferHTML`&amp;lt;这是关于字符串模板&amp;amp;标签模板的介绍&amp;gt;`       // &lt;这是关于字符串模板&amp;标签模板的介绍&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function show(stringArr,...values)&#123;    let output =&quot;&quot;;    let index = 0;    for(;index&lt;values.length;index++)&#123;        output += stringArr [index]+values[index];    &#125;    output += stringArr [index];    return output;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let name = &apos;张三&apos;,    age = 20,    message = show`我来给大家介绍:$&#123;name&#125;的年龄是$&#123;age&#125;.`;    div.innerHTML = message;     // 我来给大家介绍:张三的年龄是20.</span><br></pre></td></tr></table></figure>
+<p>对于标签模板，我基本上操作的很少，这是两个例子我是在mdn上看到的，掌握了要领，以后开发就方便了。<br>所谓的标签模板，就是添加额外的标签，这个标签其实就是一个函数方法的调用，这个方法es6没有实行，交给了开发者去编写操作，提高了拓展性。<br>就拿show说：<br>stringArr代表的就是一个数组，${}前后方的值，打印一下stringArr就可以得知。</p>
+<p>在标签函数的第一个参数中，存在一个特殊的属性raw ，raw是es6的一个关于字符串的方法，我们可以通过它来访问模板字符串的原始字符串，而不经过特殊字符的替换。<br>使用String.raw() 方法创建原始字符串和使用默认模板函数和字符串连接创建是一样的。<br>根据方法里写法可知，标签模板就是遍历数组，将对应的已知的值stringArr和字符串模板values的值依次打印出来。</p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    
+	<div class="container">
+           <ul class="pager">
+    	     
+      	     <li class="previous">
+              <a href="/2019/04/01/理解JavaScript堆和栈的区别/" rel="prev">下一篇</a>
+             </li>
+           
+           
+              <li class="next">
+              <a href="/2019/03/10/async、await、promise/" rel="prev">上一篇</a>
+            </li>
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+</section>
+
+
+    </div>
+   
+　　　　
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>Hexo &copy; 2019</span>
+    
+      <span class="split">|</span>
+      <span>来自Alen</span>
+    
+  </p>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>

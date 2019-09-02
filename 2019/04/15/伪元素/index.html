@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="Hello World">
+      <meta property="og:title" content="伪元素">
   
   <!--Open Graph Description-->
   
@@ -42,7 +42,7 @@
     </script>
   <!-- Title -->
   
-  <title>Hello World - Hexo</title>
+  <title>伪元素 - Hexo</title>
 
 
   <link rel="shortcut icon" href="/favicon.ico">
@@ -161,25 +161,28 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            Hello World
+            伪元素
             
           </h1>
          
         </div>
          <p class="a-posted-on">
-          2019-04-03
+          2019-04-15
           </p>
         <!-- Post Main Content -->
         <div class="entry-content">
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+          <h2 id="1-伪元素使用场景"><a href="#1-伪元素使用场景" class="headerlink" title="1. 伪元素使用场景"></a>1. 伪元素使用场景</h2><p>伪元素一般是用于画图，特别是那种无关紧要的分隔线、点之类的小元素，如下图的绿框所示：</p>
+<p>上面第一张图的分隔线，就是用before画的。只需要给div套一个类，这个类写一个before，那么相应的div就会带上分隔线，而不用每加一个内容，就得手动添加一个span来画那个分隔线。</p>
+<h2 id="2-什么是伪元素"><a href="#2-什么是伪元素" class="headerlink" title="2. 什么是伪元素"></a>2. 什么是伪元素</h2><p><strong>伪元素是一个元素的子元素</strong>，并且它是inline行内元素。给一个标签加上before和after，用浏览器检查：</p>
+<p>可以看到before成为了这个标签的第一个子元素，而after成为了它的最后一个子元素。</p>
+<p>这样其实相当于，自己写了两个span：</p>
+<p>但是它跟span为不太一样，因为<strong>伪元素是伪的</strong>，伪的意思就是说，你无法用js获取到这个伪元素，或者增、删、改一个伪元素，所以伪元素的优点就体现在这里了——你可以用伪元素制造视觉上的效果，但是不会增加JS查DOM的负担，它对JS是透明的。所以即使你给页面添加了很多伪元素，也不会影响查DOM的效率。同时，它不是一个实际的html标签，可以加快浏览器加载html文件，对SEO也是有帮助的。</p>
+<h3 id="3-清除浮动"><a href="#3-清除浮动" class="headerlink" title="3. 清除浮动"></a>3. 清除浮动</h3><p>“大大有名”的清除浮动clearfix大法就是借助伪元素。何谓清除浮动——一个父元素的所有子元素如果都是浮动的，那么这个父元素是没有高度的，（1）如果这个父元素的相邻元素是行内元素，那么这个行内元素将会在这个父元素的区域内见缝插针，找到一块放得下它的地方（2）如果相邻的元素是一个块级元素，那么设置这个块级元素的margin-top将会以这个父元素的起始位置作为起点。这相应地体现了浮动的两个特性：</p>
+<p>1）浮动的元素不像absolute定位那样，<strong>它并没有脱离正常的文档流，仍然占据正常文档流的空间</strong>。而这个空间正是正常文档流的background的border，反过来说，其它元素将会围绕着浮动的元素排列，浮动的元素就会占据着它们的背景和border，如下：</p>
+<p>第一段落围绕着图片排列</p>
+<p>图片的float属性也影响了第二段落，也就是说float会占据自然文本流相应位置元素的背景和边框，即使和float的元素不在同一行</p>
+<p>2）浮动的元素虽然还在父容器的区域内排列，但<strong>它不会撑起父容器的高度</strong>，父容器的高度跟没有子元素一样都是0px。为什么要这样设计呢，假设浮动撑起了父容器的高度了，那么就不会有上面（1）点的效果了，两段文字环绕着一张图片环绕，要知道浮动的出现是为了解决图片环绕文字的问题。</p>
+<p>所以结合这两点，就可以解决高度塌陷的问题。目标是要把父容器的高度撑起来，考虑到浮动了的元素并没有脱离正常文档流，而其它元素会围绕着它环绕，所以清除浮动简单有效的办法就是让环绕的元素不可环绕，把它变成一把尺子，放在最后面，把所有浮动的元素顶起来，而这把尺子就是一个设置了clear的块级元素。因为块级元素会换行，并且设置它两边不能跟着浮动的元素，所以它就跑到浮动元素的下面去，就像一把尺子把浮动元素的内容给顶起来了。而这个可以用一个after实现，因为after就是最后一个子元素：</p>
 
         </div>
       </article>
@@ -190,12 +193,12 @@
            <ul class="pager">
     	     
       	     <li class="previous">
-              <a href="/2019/04/15/伪元素/" rel="prev">下一篇</a>
+              <a href="/2019/05/02/浏览器渲染与服务端渲染/" rel="prev">下一篇</a>
              </li>
            
            
               <li class="next">
-              <a href="/2019/04/01/理解JavaScript堆和栈的区别/" rel="prev">上一篇</a>
+              <a href="/2019/04/03/hello-world/" rel="prev">上一篇</a>
             </li>
            
           </ul>
