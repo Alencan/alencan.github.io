@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="John Doe">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="伪数组">
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="Hexo">
+  <!--Type page-->
+  
+      <meta property="og:type" content="article">
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- 百度统计 -->
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+  	var hm = document.createElement("script");
+  	hm.src = "https://hm.baidu.com/hm.js?c0451e16533956173997b85f7a8de666";
+  	var s = document.getElementsByTagName("script")[0]; 
+  	s.parentNode.insertBefore(hm, s);
+	})();
+    </script>
+  <!-- Title -->
+  
+  <title>伪数组 - Hexo</title>
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+    <!--font-awesome-->
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="http://img1.imgtn.bdimg.com/it/u=3575328070,2928678511&amp;fm=26&amp;gp=0.jpg" alt="Hexo" height="60">
+        
+      </a>
+    </div>
+    <a class="header-name" href="/">
+            <span>Hexo</span>
+            的部落宅
+        </a>
+    <!-- navbar -->
+    <nav class="navbar">
+      <!--  nav links -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  <i class="fa fa-home "></i>
+                
+                首页
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  <i class="fa fa-archive "></i>
+                
+                归档
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  <i class="fa fa-user "></i>
+                
+                关于
+              </a>
+            </li>
+          
+            <li>
+              <a href="/project">
+                
+                  <i class="fa fa-folder-open "></i>
+                
+                项目
+              </a>
+            </li>
+          
+            <li>
+              <a href="/photo">
+                
+                  <i class="fa fa-photo "></i>
+                
+                相册
+              </a>
+            </li>
+          
+            <li>
+              <a href="/guestbook">
+                
+                  <i class="fa fa-edit "></i>
+                
+                留言
+              </a>
+            </li>
+          
+            <li>
+              <a href="/atom.xml">
+                
+                  <i class="fa fa-send "></i>
+                
+                RSS
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            伪数组
+            
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2019-05-18
+          </p>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h2 id="什么是伪数组？"><a href="#什么是伪数组？" class="headerlink" title="什么是伪数组？"></a>什么是伪数组？</h2><p>不要像年轻的我样，被这个概念给吓着了，其实就是个噱头，所谓的伪数组就是个对象，但它具有这么几个特点：</p>
+<ol>
+<li>● 伪数组是一个对象</li>
+<li>● 这个对象必须要有length属性</li>
+<li>● 它终究是个假数组，它没有数组的splice，concat，pop等方法</li>
+<li>● 如果这个对象的length不为0，那么必须要有按照下标存储的数据</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>1234567891011121314</th>
+<th>var a= {    ‘length’: 3,    “0”: “first”,    “1”: “second”,    “2”: “third”}console.<a href="http://www.php.net/log" target="_blank" rel="noopener">log</a>(Object.prototype.toString.call(a))console.<a href="http://www.php.net/log" target="_blank" rel="noopener">log</a>(a.length)console.<a href="http://www.php.net/log" target="_blank" rel="noopener">log</a>(a[0])//结果：[object Object]3first</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>嗦嘎，看到没，这玩意儿唯一有意思地方就是有个长度属性，并且你不管访问第几位下标时候取值，都把length属性给忽略，就好比上面我console.log(a[0])，按道理我们应该拿到的是3，但实际打印出来的是first。那么如果我这么写你再来看一个逗比景象</p>
+<table>
+<thead>
+<tr>
+<th>12345678</th>
+<th>var fakeArray = {    length: 10,    “0”: “first”,    “1”: “second”,    “2”: “third”};//结果：10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>嗯哼？正常对象我们取长度是取不了的，结果本身是undefined，但伪数组中有length属性，所以这里我们取到了所谓的长度10。</p>
+<h2 id="伪数组转化为真数组"><a href="#伪数组转化为真数组" class="headerlink" title="伪数组转化为真数组"></a>伪数组转化为真数组</h2><p>可以通过call或者apply的方法，将伪数组转化为真数组</p>
+<table>
+<thead>
+<tr>
+<th>12345678</th>
+<th>var fakeArray = {    length: 10,    “0”: “first”,    “1”: “second”,    “2”: “third”};<a href="http://www.php.net/array" target="_blank" rel="noopener">Array</a>.prototype.slice.call(fakeArray) // 此时已经改变了 this 指向，使得fakeArray拥有了真数组的原型方法，如下图：</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://www.weipxiu.com/wp-content/uploads/2019/05/2U4K0SS3J07PYGFSU4D.png" alt="img"></p>
+<h2 id="伪数组在哪里？"><a href="#伪数组在哪里？" class="headerlink" title="伪数组在哪里？"></a>伪数组在哪里？</h2><p>其实伪数组在实际项目中随处可见，如下图：</p>
+<table>
+<thead>
+<tr>
+<th>12345678910111213141516171819</th>
+<th>&lt;!DOCTYPE html&gt;<html lang="en"><head><meta name="generator" content="Hexo 3.8.0">    <meta charset="UTF-8">    <title>Document</title></head><body>    <ul id="ul">        <li></li>        <li></li>        <li></li>        <li></li>    </ul></body><script>    var arr = document.getElementById(‘ul’)    console.<a href="http://www.php.net/dir">dir</a>(arr.children)</script></html></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://www.weipxiu.com/wp-content/uploads/2019/05/SRVSK0G64X9PM96_F.png" alt="img"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1、伪数组没有数组 Array.prototype 的属性值，类型是 Object ，而数组类型是 Array</p>
+<p>2、数组是基于索引的实现， length 会自动更新，而对象是键值对</p>
+<p>3、使用对象可以创建伪数组，伪数组可以利用call或者apply很方便的转化为真数组</p>
+<p>4、反着我就发现这么几个特性玩意儿，具体能做个啥，大家项目中自己去尝试，下次有人再拿这玩意儿面试，我得好好请教下对方，这玩意儿到底能干嘛？装13显得自己懂的概念多么？</p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    
+	<div class="container" >
+           <ul class="pager">
+    	     
+           
+              <li class="next">
+              <a href="/2019/05/18/浅谈JS事件/" rel="prev">上一篇</a>
+            </li>
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+</section>
+
+
+    </div>
+   
+　　　　
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>Hexo &copy; 2019</span>
+    
+      <span class="split">|</span>
+      <span>来自Alen</span>
+    
+  </p>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>
